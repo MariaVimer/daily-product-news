@@ -12,17 +12,17 @@ from pathlib import Path
 NEWS_PATH = Path(__file__).parent / "latest_news.json"
 
 RSS_SOURCES = [
-    {"person": "Anthropic",        "role": "AI safety company, makers of Claude",      "platform": "Blog",       "color": "#D97706", "url": "https://www.anthropic.com/news", "rss": "https://www.anthropic.com/rss.xml"},
+    # Anthropic has no public RSS — scraped via _scrape_anthropic() below
     {"person": "OpenAI",           "role": "AI research lab, makers of GPT & o1",      "platform": "Blog",       "color": "#10B981", "url": "https://openai.com/news",        "rss": "https://openai.com/news/rss.xml"},
-    {"person": "Google DeepMind",  "role": "Google's AI research division",            "platform": "Blog",       "color": "#3B82F6", "url": "https://deepmind.google/blog",   "rss": "https://deepmind.google/blog/rss/"},
-    {"person": "Andrew Ng",        "role": "AI pioneer, founder DeepLearning.AI",      "platform": "Newsletter", "color": "#8B5CF6", "url": "https://www.deeplearning.ai/the-batch", "rss": "https://www.deeplearning.ai/the-batch/feed/"},
+    {"person": "Google DeepMind",  "role": "Google's AI research division",            "platform": "Blog",       "color": "#3B82F6", "url": "https://deepmind.google/blog",   "rss": "https://research.google/blog/rss/"},
+    # Andrew Ng's The Batch has no public RSS — scraped via _scrape_the_batch() below
     {"person": "Andrej Karpathy",  "role": "AI researcher, ex-OpenAI, ex-Tesla AI",   "platform": "Blog",       "color": "#6B7280", "url": "https://karpathy.ai",            "rss": "https://karpathy.bearblog.dev/feed/"},
     {"person": "Peter Yang",       "role": "PM at Roblox, writes Product Compass",     "platform": "Substack",   "color": "#FF6719", "url": "https://www.productcompass.pm",  "rss": "https://www.productcompass.pm/feed"},
     {"person": "Ethan Mollick",    "role": "Wharton professor, AI in work & learning", "platform": "Substack",   "color": "#FF6719", "url": "https://www.oneusefulthing.org", "rss": "https://www.oneusefulthing.org/feed"},
     {"person": "Lenny Rachitsky",  "role": "Writes Lenny's Newsletter, top PM resource","platform": "Substack",  "color": "#FF6719", "url": "https://www.lennysnewsletter.com","rss": "https://www.lennysnewsletter.com/feed"},
     {"person": "Shreyas Doshi",    "role": "Product leader, ex-Stripe Twitter Yahoo",  "platform": "Substack",   "color": "#FF6719", "url": "https://shreyas.substack.com",   "rss": "https://shreyas.substack.com/feed"},
     {"person": "Swyx / Shawn Wang","role": "AI engineer, runs latent.space podcast",   "platform": "Blog",       "color": "#6B7280", "url": "https://www.latent.space",       "rss": "https://www.latent.space/feed"},
-    {"person": "Julie Zhuo",       "role": "CPO, ex-VP Design Facebook, The Looking Glass","platform": "Substack","color": "#FF6719","url": "https://www.juliezhuo.com",      "rss": "https://www.theengineeringmanager.com/feed"},
+    {"person": "Julie Zhuo",       "role": "CPO, ex-VP Design Facebook, The Looking Glass","platform": "Medium", "color": "#000000","url": "https://medium.com/@joulee",     "rss": "https://medium.com/feed/@joulee"},
 ]
 
 # Curated discovery pool — surfaces one new voice per day, rotating.
@@ -66,6 +66,94 @@ SEARCH_SOURCES = [
     {"person": "Sam Altman",       "role": "CEO of OpenAI",                            "platform": "Blog",       "color": "#6B7280"},
     {"person": "Andrej Karpathy",  "role": "AI researcher, ex-OpenAI, ex-Tesla AI",   "platform": "Twitter",    "color": "#000000"},
 ]
+
+
+def _scrape_anthropic() -> dict | None:
+    """Scrape Anthropic's news page (no public RSS)."""
+    import urllib.request, re
+    try:
+        req = urllib.request.Request(
+            "https://www.anthropic.com/news",
+            headers={"User-Agent": "Mozilla/5.0 Chrome/120"},
+        )
+        with urllib.request.urlopen(req, timeout=12) as r:
+            body = r.read(200000).decode("utf-8", "ignore")
+        pattern = (
+            r'href=["\']?(/news/[a-z0-9\-]+)["\']?[^>]*>.*?'
+            r'<time[^>]*>([^<]+)</time>.*?'
+            r'<h\d[^>]*>([^<]+)</h\d>.*?'
+            r'<p[^>]*>(.*?)(?:</p>|<a\s)'
+        )
+        m = re.search(pattern, body, re.DOTALL)
+        if not m:
+            return None
+        slug, date_str, title, desc_html = m.groups()
+        desc = re.sub(r"<[^>]+>", " ", desc_html)
+        desc = re.sub(r"\s+", " ", desc).strip()[:280]
+        try:
+            from datetime import datetime
+            pub = datetime.strptime(date_str.strip(), "%b %d, %Y").strftime("%Y-%m-%d")
+        except Exception:
+            pub = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        return {
+            "person": "Anthropic",
+            "role": "AI safety company, makers of Claude",
+            "platform": "Blog",
+            "color": "#D97706",
+            "title": title.strip(),
+            "description": desc,
+            "url": f"https://www.anthropic.com{slug}",
+            "published": pub,
+            "relevance": "",
+        }
+    except Exception:
+        return None
+
+
+def _scrape_the_batch() -> dict | None:
+    """Scrape Andrew Ng's The Batch (no public RSS) — fetch listing then latest issue."""
+    import urllib.request, re
+    headers = {"User-Agent": "Mozilla/5.0 Chrome/120"}
+    try:
+        # Get listing page to find latest issue slug
+        req = urllib.request.Request("https://www.deeplearning.ai/the-batch/", headers=headers)
+        with urllib.request.urlopen(req, timeout=12) as r:
+            listing = r.read(200000).decode("utf-8", "ignore")
+        # Find highest issue number
+        issue_nums = [int(n) for n in re.findall(r'the-batch/issue-(\d+)', listing)]
+        if not issue_nums:
+            return None
+        latest = max(issue_nums)
+        issue_url = f"https://www.deeplearning.ai/the-batch/issue-{latest}/"
+        # Fetch the issue page for title + description + date
+        req2 = urllib.request.Request(issue_url, headers=headers)
+        with urllib.request.urlopen(req2, timeout=12) as r2:
+            body = r2.read(30000).decode("utf-8", "ignore")
+        title_m = re.search(r'<title>([^<|]+)', body)
+        desc_m = re.search(r'og:description["\'][^>]*content=["\']([^"\']+)', body)
+        date_m = re.search(r'(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\w*\s+\d+,?\s*\d{4}', body)
+        title = title_m.group(1).strip() if title_m else f"The Batch Issue {latest}"
+        desc = desc_m.group(1).strip()[:280] if desc_m else "Weekly AI news and insights from DeepLearning.AI."
+        pub = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        if date_m:
+            try:
+                from datetime import datetime as dt
+                pub = dt.strptime(date_m.group(0), "%b %d, %Y").strftime("%Y-%m-%d")
+            except Exception:
+                pass
+        return {
+            "person": "Andrew Ng",
+            "role": "AI pioneer, founder DeepLearning.AI, The Batch newsletter",
+            "platform": "Newsletter",
+            "color": "#8B5CF6",
+            "title": title,
+            "description": desc,
+            "url": issue_url,
+            "published": pub,
+            "relevance": "",
+        }
+    except Exception:
+        return None
 
 
 def _fetch_rss(source: dict) -> dict | None:
@@ -123,6 +211,17 @@ def fetch_news() -> dict:
             pass
 
     items = []
+    fetched_names: set[str] = set()
+
+    # Scraped sources (no public RSS available)
+    for fn, name in [(_scrape_anthropic, "Anthropic"), (_scrape_the_batch, "Andrew Ng")]:
+        result = fn()
+        if result:
+            items.append(result)
+        elif name in existing:
+            items.append(existing[name])
+        fetched_names.add(name)
+
     # RSS sources
     for source in RSS_SOURCES:
         fetched = _fetch_rss(source)
@@ -130,11 +229,11 @@ def fetch_news() -> dict:
             items.append(fetched)
         elif source["person"] in existing:
             items.append(existing[source["person"]])
+        fetched_names.add(source["person"])
 
-    # Preserve Claude Cowork items (LinkedIn/Twitter) that aren't in RSS
-    rss_names = {s["person"] for s in RSS_SOURCES}
+    # Preserve Claude Cowork items (LinkedIn/Twitter) not handled above
     for person, item in existing.items():
-        if person not in rss_names:
+        if person not in fetched_names:
             items.append(item)
 
     # Sort by published date descending
