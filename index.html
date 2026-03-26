@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily Product News</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif;
+      background: #fff;
+      color: rgb(55,53,47);
+      min-height: 100vh;
+      padding: 48px 24px 80px;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header { margin-bottom: 40px; }
+    .header-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(55,53,47,0.4); margin-bottom: 8px;
+    }
+    .header h1 {
+      font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
+      color: rgb(55,53,47);
+    }
+    .header-meta {
+      font-size: 13px; color: rgba(55,53,47,0.4); margin-top: 6px;
+    }
+
+    /* Today's read */
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(55,53,47,0.35); margin-bottom: 12px;
+    }
+
+    .discover-card {
+      border: 1.5px dashed rgba(55,53,47,0.15); border-radius: 10px; padding: 18px 20px;
+      margin-bottom: 32px; display: flex; align-items: flex-start; gap: 16px;
+      background: rgba(251,239,213,0.2); text-decoration: none; transition: all 0.12s;
+    }
+    .discover-card:hover { border-color: rgba(55,53,47,0.3); background: rgba(251,239,213,0.4); }
+    .discover-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .discover-body { flex: 1; min-width: 0; }
+    .discover-sublabel { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(55,53,47,0.35); margin-bottom: 5px; }
+    .discover-person { font-size: 15px; font-weight: 600; color: rgb(55,53,47); }
+    .discover-role { font-size: 12px; color: rgba(55,53,47,0.45); margin-top: 2px; line-height: 1.4; }
+    .discover-why { font-size: 13px; color: rgba(55,53,47,0.65); margin-top: 8px; line-height: 1.55; }
+    .discover-chip {
+      display: inline-block; margin-top: 10px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 99px; color: #fff;
+    }
+
+    /* News grid */
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 12px;
+    }
+
+    .news-card {
+      border: 1px solid rgba(55,53,47,0.1); border-radius: 8px; padding: 14px 16px;
+      display: flex; flex-direction: column; gap: 6px; text-decoration: none;
+      transition: border-color 0.12s; background: #fff;
+    }
+    .news-card:hover { border-color: rgba(55,53,47,0.28); }
+    .news-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .news-platform-chip {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 2px 7px; border-radius: 99px; color: #fff; flex-shrink: 0;
+    }
+    .news-person { font-size: 11px; color: rgba(55,53,47,0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .news-role { font-size: 11px; color: rgba(55,53,47,0.35); line-height: 1.4; }
+    .news-title { font-size: 13px; font-weight: 500; color: rgb(55,53,47); line-height: 1.4; }
+    .news-desc {
+      font-size: 12px; color: rgba(55,53,47,0.55); line-height: 1.5;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .news-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
+    .news-date { font-size: 11px; color: rgba(55,53,47,0.3); }
+    .news-arrow { font-size: 11px; color: rgba(55,53,47,0.2); }
+    .news-card:hover .news-arrow { color: rgba(55,53,47,0.5); }
+    .news-no-link { cursor: default; }
+
+    .news-empty { font-size: 13px; color: rgba(55,53,47,0.4); padding: 16px 0; }
+
+    /* Divider */
+    .divider { border: none; border-top: 1px solid rgba(55,53,47,0.08); margin: 28px 0; }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-label">Curated for AI &amp; Product leaders</div>
+    <h1>Daily Product News</h1>
+    <div class="header-meta" id="header-meta">Updated daily</div>
+  </div>
+
+  <div class="section-label">Today's read</div>
+  <div id="discover-wrap"></div>
+
+  <hr class="divider">
+
+  <div class="section-label">Top of mind</div>
+  <div class="news-grid" id="news-grid">
+    <div class="news-empty">Loading…</div>
+  </div>
+
+</div>
+
+<script>
+/* NEWS_DATA_START */
+const NEWS_DATA = {
+  "generated": "2026-03-26T00:30:04.242195+00:00",
+  "items": [
+    {
+      "person": "Andrej Karpathy",
+      "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
+      "platform": "Blog",
+      "color": "#6B7280",
+      "title": "2025 LLM Year in Review",
+      "description": "2025 Year in Review of LLM paradigm changes",
+      "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+      "published": "2026-03-26",
+      "relevance": ""
+    },
+    {
+      "person": "OpenAI",
+      "role": "AI research lab, makers of GPT & o1",
+      "platform": "Blog",
+      "color": "#10B981",
+      "title": "Inside our approach to the Model Spec",
+      "description": "Learn how OpenAI\u2019s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.",
+      "url": "https://openai.com/index/our-approach-to-the-model-spec",
+      "published": "2026-03-25",
+      "relevance": ""
+    },
+    {
+      "person": "Lenny Rachitsky",
+      "role": "Writes Lenny's Newsletter, top PM resource",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "How Stripe built \u201cminions\u201d\u2014AI coding agents that ship 1,300 PRs weekly from Slack reactions | Steve Kaliski (Stripe engineer)",
+      "description": "Watch now | &#127897;&#65039; How Stripe engineers deploy AI agents that write PRs from Slack reactions, plus a demo of machine-to-machine payments that plan a birthday party for $5.47",
+      "url": "https://www.lennysnewsletter.com/p/how-stripe-built-minionsai-coding",
+      "published": "2026-03-25",
+      "relevance": ""
+    },
+    {
+      "person": "Swyx / Shawn Wang",
+      "role": "AI engineer, runs latent.space podcast",
+      "platform": "Blog",
+      "color": "#6B7280",
+      "title": "[AINews] Apple's War on Slop",
+      "description": "a quiet day lets us reflect on the End of Sora, LiteLLM, AI2, and other not so happy news.",
+      "url": "https://www.latent.space/p/ainews-apples-war-on-slop",
+      "published": "2026-03-25",
+      "relevance": ""
+    },
+    {
+      "person": "Peter Yang",
+      "role": "PM at Roblox, writes Product Compass",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "Claude Team is Shipping Like Crazy: 74 Releases in 52 Days",
+      "description": "Every product release from Feb 3 to Mar 24, tracked to the engineer and their X profile.",
+      "url": "https://www.productcompass.pm/p/claude-shipping-calendar",
+      "published": "2026-03-24",
+      "relevance": ""
+    },
+    {
+      "person": "Julie Zhuo",
+      "role": "CPO, ex-VP Design Facebook, The Looking Glass",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "Slow down to speed up",
+      "description": "This month, we&#8217;re going to explore what might be the most counterintuitive practice in the age of AI: knowing when to&#160;slow down. Hang on, slow down? Yes, bear with me here. Let&#8217;s bring the debate that&#8217;s probably been going on in your team for some time to a",
+      "url": "https://www.theengineeringmanager.com/growth/slow-down-to-speed-up/",
+      "published": "2026-03-13",
+      "relevance": ""
+    },
+    {
+      "person": "Ethan Mollick",
+      "role": "Wharton professor, AI in work & learning",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "The Shape of the Thing",
+      "description": "Where we are right now, and what likely happens next",
+      "url": "https://www.oneusefulthing.org/p/the-shape-of-the-thing",
+      "published": "2026-03-12",
+      "relevance": ""
+    },
+    {
+      "person": "Shreyas Doshi",
+      "role": "Product leader, ex-Stripe Twitter Yahoo",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "Musings",
+      "description": "Welcome to Shreyas&#8217; Newsletter by me, Shreyas Mohan.",
+      "url": "https://shreyas.substack.com/p/coming-soon",
+      "published": "2019-12-15",
+      "relevance": ""
+    }
+  ],
+  "daily_pick": {
+    "person": "Clement Delangue",
+    "role": "CEO Hugging Face, open-source AI ecosystem",
+    "platform": "LinkedIn",
+    "color": "#0A66C2",
+    "url": "https://www.linkedin.com/in/clementdelangue",
+    "why": "OSS AI model releases that will hit enterprise before you expect.",
+    "date": "2026-03-26"
+  }
+};
+/* NEWS_DATA_END */
+
+const PLATFORM_COLORS = {
+  'LinkedIn':   '#0A66C2',
+  'Twitter':    '#000000',
+  'Substack':   '#FF6719',
+  'Newsletter': '#8B5CF6',
+  'Blog':       '#6B7280',
+  'YouTube':    '#EF4444',
+};
+
+function render() {
+  // Header meta
+  if (NEWS_DATA.generated) {
+    const d = new Date(NEWS_DATA.generated);
+    document.getElementById('header-meta').textContent =
+      'Updated ' + d.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
+  }
+
+  // Discover card
+  const pick = NEWS_DATA.daily_pick;
+  const wrap = document.getElementById('discover-wrap');
+  if (pick) {
+    const color = pick.color || '#6B7280';
+    wrap.innerHTML = `<a class="discover-card" href="${pick.url}" target="_blank">
+      <div class="discover-icon">✦</div>
+      <div class="discover-body">
+        <div class="discover-sublabel">Start following</div>
+        <div class="discover-person">${pick.person}</div>
+        <div class="discover-role">${pick.role}</div>
+        <div class="discover-why">${pick.why}</div>
+        <span class="discover-chip" style="background:${color}">${pick.platform}</span>
+      </div>
+    </a>`;
+  } else {
+    wrap.innerHTML = '';
+  }
+
+  // News grid
+  const items = NEWS_DATA.items || [];
+  const grid = document.getElementById('news-grid');
+  if (!items.length) {
+    grid.innerHTML = '<div class="news-empty">No news yet — check back after the daily fetch.</div>';
+    return;
+  }
+  grid.innerHTML = items.map(n => {
+    const color = n.color || PLATFORM_COLORS[n.platform] || '#6B7280';
+    const chip = `<span class="news-platform-chip" style="background:${color}">${n.platform}</span>`;
+    const hasLink = n.url && !n.title?.includes('No recent posts');
+    const inner = `
+      <div class="news-card-top">${chip}<span class="news-person">${n.person}</span></div>
+      ${n.role ? `<div class="news-role">${n.role}</div>` : ''}
+      ${n.title ? `<div class="news-title">${n.title}</div>` : ''}
+      ${n.description ? `<div class="news-desc">${n.description}</div>` : ''}
+      <div class="news-footer">
+        <span class="news-date">${n.published || ''}</span>
+        ${hasLink ? '<span class="news-arrow">↗</span>' : ''}
+      </div>`;
+    return hasLink
+      ? `<a class="news-card" href="${n.url}" target="_blank">${inner}</a>`
+      : `<div class="news-card news-no-link">${inner}</div>`;
+  }).join('');
+}
+
+render();
+</script>
+</body>
+</html>

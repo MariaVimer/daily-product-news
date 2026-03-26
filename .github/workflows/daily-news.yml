@@ -1,0 +1,33 @@
+name: Daily Product News
+
+on:
+  schedule:
+    - cron: "0 12 * * 1-5"   # 7am EST (standard time)
+    - cron: "0 11 * * 1-5"   # 7am EST (daylight saving)
+  workflow_dispatch:
+
+jobs:
+  fetch-news:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch news and update dashboard
+        run: python fetch_news.py
+
+      - name: Commit
+        run: |
+          git config user.name "daily-news[bot]"
+          git config user.email "daily-news@github-actions"
+          git add latest_news.json index.html
+          git diff --staged --quiet || git commit -m "chore: daily news $(date -u +%Y-%m-%d)"
+          git push
