@@ -1,5 +1,5 @@
 {
-  "generated": "2026-03-26T00:51:00.920963+00:00",
+  "generated": "2026-03-26T11:52:41.286967+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -9,6 +9,17 @@
       "title": "2025 LLM Year in Review",
       "description": "2025 Year in Review of LLM paradigm changes",
       "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+      "published": "2026-03-26",
+      "relevance": ""
+    },
+    {
+      "person": "Swyx / Shawn Wang",
+      "role": "AI engineer, runs latent.space podcast",
+      "platform": "Blog",
+      "color": "#6B7280",
+      "title": "[AINews] The Biggest Claude Launch of All Time",
+      "description": "We thought about this carefully before choosing hyperbole; but it is warranted.",
+      "url": "https://www.latent.space/p/ainews-the-biggest-claude-launch",
       "published": "2026-03-26",
       "relevance": ""
     },
@@ -31,17 +42,6 @@
       "title": "How Stripe built \u201cminions\u201d\u2014AI coding agents that ship 1,300 PRs weekly from Slack reactions | Steve Kaliski (Stripe engineer)",
       "description": "Watch now | &#127897;&#65039; How Stripe engineers deploy AI agents that write PRs from Slack reactions, plus a demo of machine-to-machine payments that plan a birthday party for $5.47",
       "url": "https://www.lennysnewsletter.com/p/how-stripe-built-minionsai-coding",
-      "published": "2026-03-25",
-      "relevance": ""
-    },
-    {
-      "person": "Swyx / Shawn Wang",
-      "role": "AI engineer, runs latent.space podcast",
-      "platform": "Blog",
-      "color": "#6B7280",
-      "title": "[AINews] Apple's War on Slop",
-      "description": "a quiet day lets us reflect on the End of Sora, LiteLLM, AI2, and other not so happy news.",
-      "url": "https://www.latent.space/p/ainews-apples-war-on-slop",
       "published": "2026-03-25",
       "relevance": ""
     },
