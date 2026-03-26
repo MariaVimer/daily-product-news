@@ -3,7 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Product News</title>
+  <title>Daily Product News · @Maria Vimer</title>
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script>
+    /* ── Supabase config ────────────────────────────────────────────────────────
+       Create a free project at https://supabase.com, then paste your values here.
+       Run supabase-setup.sql in the SQL editor to create the required tables.
+       Leave blank to use localStorage-only mode (no cross-device persistence).
+    ────────────────────────────────────────────────────────────────────────── */
+    window.SUPABASE_URL      = "";   // e.g. "https://xxxx.supabase.co"
+    window.SUPABASE_ANON_KEY = "";   // e.g. "eyJhbGci..."
+  </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -11,67 +22,129 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif;
       background: #fff;
       color: rgb(55,53,47);
+    }
+
+    /* ── 2-column shell ───────────────────────────────────────────────────── */
+    .app-shell {
+      display: grid;
+      grid-template-columns: 220px 1fr;
       min-height: 100vh;
-      padding: 48px 24px 80px;
     }
 
-    .page {
-      max-width: 860px;
-      margin: 0 auto;
+    /* ── Sidebar ──────────────────────────────────────────────────────────── */
+    .sidebar {
+      border-right: 1px solid rgba(55,53,47,0.08);
+      background: #fafafa;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 28px 0 40px;
+      flex-shrink: 0;
     }
+    .sidebar-title {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(55,53,47,0.35); padding: 0 16px 10px;
+    }
+    .sidebar-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 7px 16px; cursor: pointer; transition: background 0.1s; user-select: none;
+    }
+    .sidebar-item:hover { background: rgba(55,53,47,0.05); }
+    .sidebar-item.active { background: rgba(55,53,47,0.08); }
+    .sidebar-item.active .sidebar-date { font-weight: 600; }
+    .sidebar-date { font-size: 13px; color: rgb(55,53,47); }
+    .sidebar-dots { font-size: 9px; color: rgba(55,53,47,0.3); letter-spacing: 1px; }
 
-    /* Header */
-    .header { margin-bottom: 40px; }
+    /* ── Main content ─────────────────────────────────────────────────────── */
+    .main { padding: 44px 44px 80px; max-width: 920px; }
+
+    /* ── Header ───────────────────────────────────────────────────────────── */
+    .header-row {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      gap: 20px; margin-bottom: 36px;
+    }
     .header-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      color: rgba(55,53,47,0.4); margin-bottom: 8px;
+      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(55,53,47,0.35); margin-bottom: 6px;
     }
     .header h1 {
-      font-size: 28px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
+      font-size: 18px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.3;
       color: rgb(55,53,47);
     }
-    .header-meta {
-      font-size: 13px; color: rgba(55,53,47,0.4); margin-top: 6px;
-    }
+    .header h1 a { color: inherit; text-decoration: none; border-bottom: 1.5px solid rgba(55,53,47,0.2); }
+    .header h1 a:hover { border-bottom-color: rgb(55,53,47); }
+    .header-meta { font-size: 12px; color: rgba(55,53,47,0.38); margin-top: 5px; }
 
-    /* Today's read */
+    /* ── Auth zone ────────────────────────────────────────────────────────── */
+    .auth-zone { display: flex; align-items: center; gap: 8px; flex-shrink: 0; padding-top: 4px; }
+    .auth-avatar {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(55,53,47,0.1); display: flex; align-items: center;
+      justify-content: center; font-size: 12px; font-weight: 600; overflow: hidden;
+    }
+    .auth-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .auth-name { font-size: 12px; color: rgba(55,53,47,0.7); max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    .btn { cursor: pointer; transition: all 0.1s; }
+    .btn-outline {
+      font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 6px;
+      border: 1px solid rgba(55,53,47,0.18); background: #fff; color: rgb(55,53,47);
+    }
+    .btn-outline:hover { background: rgba(55,53,47,0.05); }
+    .btn-solid {
+      font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 6px;
+      border: none; background: rgb(55,53,47); color: #fff;
+    }
+    .btn-solid:hover { opacity: 0.82; }
+
+    /* ── Section label ────────────────────────────────────────────────────── */
     .section-label {
-      font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-      color: rgba(55,53,47,0.35); margin-bottom: 12px;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+      color: rgba(55,53,47,0.32); margin-bottom: 12px;
     }
+    .divider { border: none; border-top: 1px solid rgba(55,53,47,0.08); margin: 24px 0; }
 
+    /* ── Discover card ────────────────────────────────────────────────────── */
     .discover-card {
       border: 1.5px dashed rgba(55,53,47,0.15); border-radius: 10px; padding: 18px 20px;
-      margin-bottom: 32px; display: flex; align-items: flex-start; gap: 16px;
-      background: rgba(251,239,213,0.2); text-decoration: none; transition: all 0.12s;
+      margin-bottom: 28px; display: flex; align-items: flex-start; gap: 16px;
+      background: rgba(251,239,213,0.18);
     }
-    .discover-card:hover { border-color: rgba(55,53,47,0.3); background: rgba(251,239,213,0.4); }
-    .discover-icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .discover-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
     .discover-body { flex: 1; min-width: 0; }
-    .discover-sublabel { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(55,53,47,0.35); margin-bottom: 5px; }
-    .discover-person { font-size: 15px; font-weight: 600; color: rgb(55,53,47); }
+    .discover-sublabel {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: rgba(55,53,47,0.32); margin-bottom: 5px;
+    }
+    .discover-person { font-size: 15px; font-weight: 600; }
+    .discover-person a { color: rgb(55,53,47); text-decoration: none; }
+    .discover-person a:hover { text-decoration: underline; }
     .discover-role { font-size: 12px; color: rgba(55,53,47,0.45); margin-top: 2px; line-height: 1.4; }
-    .discover-why { font-size: 13px; color: rgba(55,53,47,0.65); margin-top: 8px; line-height: 1.55; }
+    .discover-why { font-size: 13px; color: rgba(55,53,47,0.62); margin-top: 8px; line-height: 1.55; }
+    .discover-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 12px; flex-wrap: wrap; gap: 8px; }
     .discover-chip {
-      display: inline-block; margin-top: 10px;
       font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 2px 8px; border-radius: 99px; color: #fff;
+      padding: 2px 8px; border-radius: 99px; color: #fff; display: inline-block;
     }
-
-    /* News grid */
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 12px;
+    .btn-roster {
+      font-size: 11px; font-weight: 600; padding: 5px 11px; border-radius: 6px;
+      border: 1px solid rgba(55,53,47,0.2); background: #fff; color: rgb(55,53,47);
+      cursor: pointer; transition: all 0.1s; display: inline-flex; align-items: center; gap: 5px;
     }
+    .btn-roster:hover:not(:disabled) { background: rgba(55,53,47,0.07); }
+    .btn-roster:disabled { opacity: 0.45; cursor: default; }
 
+    /* ── News grid ────────────────────────────────────────────────────────── */
+    .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; }
     .news-card {
+      position: relative;
       border: 1px solid rgba(55,53,47,0.1); border-radius: 8px; padding: 14px 16px;
-      display: flex; flex-direction: column; gap: 6px; text-decoration: none;
-      transition: border-color 0.12s; background: #fff;
+      display: flex; flex-direction: column; gap: 5px; text-decoration: none;
+      transition: border-color 0.12s; background: #fff; color: inherit;
     }
-    .news-card:hover { border-color: rgba(55,53,47,0.28); }
-    .news-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .news-card:hover { border-color: rgba(55,53,47,0.26); }
+    .news-card-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-right: 26px; }
     .news-platform-chip {
       font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
       padding: 2px 7px; border-radius: 99px; color: #fff; flex-shrink: 0;
@@ -79,47 +152,871 @@
     .news-person { font-size: 11px; color: rgba(55,53,47,0.4); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .news-role { font-size: 11px; color: rgba(55,53,47,0.35); line-height: 1.4; }
     .news-title { font-size: 13px; font-weight: 500; color: rgb(55,53,47); line-height: 1.4; }
-    .news-desc {
-      font-size: 12px; color: rgba(55,53,47,0.55); line-height: 1.5;
-      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-    }
+    .news-desc { font-size: 12px; color: rgba(55,53,47,0.55); line-height: 1.5;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .news-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 4px; }
     .news-date { font-size: 11px; color: rgba(55,53,47,0.3); }
     .news-arrow { font-size: 11px; color: rgba(55,53,47,0.2); }
     .news-card:hover .news-arrow { color: rgba(55,53,47,0.5); }
     .news-no-link { cursor: default; }
+    .news-empty { font-size: 13px; color: rgba(55,53,47,0.4); padding: 8px 0; }
 
-    .news-empty { font-size: 13px; color: rgba(55,53,47,0.4); padding: 16px 0; }
+    /* ── Read checkbox ────────────────────────────────────────────────────── */
+    .read-btn {
+      position: absolute; top: 12px; right: 12px;
+      width: 18px; height: 18px; border-radius: 50%;
+      border: 1.5px solid rgba(55,53,47,0.18); background: #fff;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.12s; flex-shrink: 0; z-index: 1;
+      font-size: 10px; color: transparent;
+    }
+    .read-btn:hover { border-color: rgba(55,53,47,0.45); }
+    .read-btn.is-read { background: rgb(55,53,47); border-color: rgb(55,53,47); color: #fff; }
 
-    /* Divider */
-    .divider { border: none; border-top: 1px solid rgba(55,53,47,0.08); margin: 28px 0; }
+    /* ── Modals ───────────────────────────────────────────────────────────── */
+    .modal-back {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.25);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 200; backdrop-filter: blur(3px);
+    }
+    .modal-back.hidden { display: none; }
+    .modal {
+      background: #fff; border-radius: 14px; padding: 28px 30px; width: 380px;
+      max-width: calc(100vw - 32px); box-shadow: 0 24px 64px rgba(0,0,0,0.14);
+    }
+    .modal h2 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .modal-sub { font-size: 13px; color: rgba(55,53,47,0.55); margin-bottom: 18px; line-height: 1.5; }
+    .modal-input {
+      width: 100%; padding: 9px 12px; border: 1px solid rgba(55,53,47,0.2);
+      border-radius: 8px; font-size: 14px; outline: none; font-family: inherit;
+      transition: border-color 0.12s;
+    }
+    .modal-input:focus { border-color: rgb(55,53,47); }
+    .modal-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+    .modal-status { font-size: 12px; color: rgba(55,53,47,0.55); margin-top: 10px; min-height: 18px; }
+    .modal-divider { text-align: center; font-size: 11px; color: rgba(55,53,47,0.3); margin: 14px 0; }
+
+    .btn-oauth {
+      width: 100%; padding: 9px 14px; border-radius: 8px;
+      border: 1px solid rgba(55,53,47,0.15); background: #fff;
+      font-size: 13px; font-weight: 500; cursor: pointer;
+      display: flex; align-items: center; gap: 10px; transition: background 0.1s;
+      font-family: inherit; margin-bottom: 8px; color: rgb(55,53,47);
+    }
+    .btn-oauth:hover { background: rgba(55,53,47,0.04); }
+    .oauth-icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── Mobile ───────────────────────────────────────────────────────────── */
+    @media (max-width: 680px) {
+      .app-shell { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .main { padding: 28px 20px 60px; }
+    }
   </style>
 </head>
 <body>
-<div class="page">
 
-  <div class="header">
-    <div class="header-label">Curated for AI &amp; Product leaders</div>
-    <h1>Daily Product News</h1>
-    <div class="header-meta" id="header-meta">Updated daily</div>
+<!-- ── Auth modal ─────────────────────────────────────────────────────────── -->
+<div class="modal-back hidden" id="modal-auth" onclick="closeOnBack(event,'modal-auth')">
+  <div class="modal">
+    <h2>Sign in</h2>
+    <p class="modal-sub">Save your reading history and build your personal news roster.</p>
+    <button class="btn-oauth" onclick="signInGoogle()">
+      <svg class="oauth-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Continue with Google
+    </button>
+    <button class="btn-oauth" onclick="signInGitHub()">
+      <svg class="oauth-icon" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      Continue with GitHub
+    </button>
+    <div class="modal-divider">or use email</div>
+    <input class="modal-input" type="email" id="auth-email" placeholder="you@example.com">
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modal-auth')">Cancel</button>
+      <button class="btn btn-solid" onclick="sendMagicLink()">Send magic link</button>
+    </div>
+    <div class="modal-status" id="auth-status"></div>
   </div>
+</div>
 
-  <div class="section-label">Today's read</div>
-  <div id="discover-wrap"></div>
-
-  <hr class="divider">
-
-  <div class="section-label">Top of mind</div>
-  <div class="news-grid" id="news-grid">
-    <div class="news-empty">Loading…</div>
+<!-- ── Subscribe modal ────────────────────────────────────────────────────── -->
+<div class="modal-back hidden" id="modal-sub" onclick="closeOnBack(event,'modal-sub')">
+  <div class="modal">
+    <h2>Subscribe</h2>
+    <p class="modal-sub">Get daily curated reads in your inbox — AI, product strategy, and engineering leadership. No spam.</p>
+    <input class="modal-input" type="email" id="sub-email" placeholder="you@example.com">
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modal-sub')">Cancel</button>
+      <button class="btn btn-solid" onclick="submitSubscribe()">Subscribe</button>
+    </div>
+    <div class="modal-status" id="sub-status"></div>
   </div>
+</div>
 
+<!-- ── App shell ──────────────────────────────────────────────────────────── -->
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="sidebar-title">History</div>
+    <div id="sidebar-list"></div>
+  </aside>
+
+  <main class="main">
+    <div class="header-row">
+      <div class="header">
+        <div class="header-label">Daily reads curated by</div>
+        <h1>A LIST OF FAVORITE THINGS TO READ DAILY BY <a href="https://www.linkedin.com/in/mariavimer" target="_blank">@MARIA VIMER</a></h1>
+        <div class="header-meta" id="header-meta">Updated daily</div>
+      </div>
+      <div class="auth-zone" id="auth-zone">
+        <button class="btn btn-outline" onclick="openModal('modal-sub')">Subscribe</button>
+        <button class="btn btn-solid" id="btn-signin" onclick="openModal('modal-auth')">Sign in</button>
+      </div>
+    </div>
+
+    <div class="section-label">Today's read</div>
+    <div id="discover-wrap"></div>
+
+    <hr class="divider">
+
+    <div class="section-label" id="news-label">Top of mind</div>
+    <div class="news-grid" id="news-grid">
+      <div class="news-empty">Loading…</div>
+    </div>
+  </main>
 </div>
 
 <script>
+/* ── Data ─────────────────────────────────────────────────────────────────── */
+/* HISTORY_START */
+const HISTORY = [
+  {
+    "date": "2026-03-26",
+    "generated": "2026-03-26T00:51:00.920963+00:00",
+    "items": [
+      {
+        "person": "Andrej Karpathy",
+        "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "2025 LLM Year in Review",
+        "description": "2025 Year in Review of LLM paradigm changes",
+        "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+        "published": "2026-03-26",
+        "relevance": ""
+      },
+      {
+        "person": "OpenAI",
+        "role": "AI research lab, makers of GPT & o1",
+        "platform": "Blog",
+        "color": "#10B981",
+        "title": "Inside our approach to the Model Spec",
+        "description": "Learn how OpenAI\u2019s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.",
+        "url": "https://openai.com/index/our-approach-to-the-model-spec",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Lenny Rachitsky",
+        "role": "Writes Lenny's Newsletter, top PM resource",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "How Stripe built \u201cminions\u201d\u2014AI coding agents that ship 1,300 PRs weekly from Slack reactions | Steve Kaliski (Stripe engineer)",
+        "description": "Watch now | &#127897;&#65039; How Stripe engineers deploy AI agents that write PRs from Slack reactions, plus a demo of machine-to-machine payments that plan a birthday party for $5.47",
+        "url": "https://www.lennysnewsletter.com/p/how-stripe-built-minionsai-coding",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Swyx / Shawn Wang",
+        "role": "AI engineer, runs latent.space podcast",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "[AINews] Apple's War on Slop",
+        "description": "a quiet day lets us reflect on the End of Sora, LiteLLM, AI2, and other not so happy news.",
+        "url": "https://www.latent.space/p/ainews-apples-war-on-slop",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Peter Yang",
+        "role": "PM at Roblox, writes Product Compass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Claude Team is Shipping Like Crazy: 74 Releases in 52 Days",
+        "description": "Every product release from Feb 3 to Mar 24, tracked to the engineer and their X profile.",
+        "url": "https://www.productcompass.pm/p/claude-shipping-calendar",
+        "published": "2026-03-24",
+        "relevance": ""
+      },
+      {
+        "person": "Julie Zhuo",
+        "role": "CPO, ex-VP Design Facebook, The Looking Glass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Slow down to speed up",
+        "description": "This month, we&#8217;re going to explore what might be the most counterintuitive practice in the age of AI: knowing when to&#160;slow down. Hang on, slow down? Yes, bear with me here. Let&#8217;s bring the debate that&#8217;s probably been going on in your team for some time to a",
+        "url": "https://www.theengineeringmanager.com/growth/slow-down-to-speed-up/",
+        "published": "2026-03-13",
+        "relevance": ""
+      },
+      {
+        "person": "Ethan Mollick",
+        "role": "Wharton professor, AI in work & learning",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "The Shape of the Thing",
+        "description": "Where we are right now, and what likely happens next",
+        "url": "https://www.oneusefulthing.org/p/the-shape-of-the-thing",
+        "published": "2026-03-12",
+        "relevance": ""
+      },
+      {
+        "person": "Shreyas Doshi",
+        "role": "Product leader, ex-Stripe Twitter Yahoo",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Musings",
+        "description": "Welcome to Shreyas&#8217; Newsletter by me, Shreyas Mohan.",
+        "url": "https://shreyas.substack.com/p/coming-soon",
+        "published": "2019-12-15",
+        "relevance": ""
+      }
+    ],
+    "daily_pick": {
+      "person": "Clement Delangue",
+      "role": "CEO Hugging Face, open-source AI ecosystem",
+      "platform": "LinkedIn",
+      "color": "#0A66C2",
+      "url": "https://www.linkedin.com/in/clementdelangue",
+      "why": "OSS AI model releases that will hit enterprise before you expect.",
+      "date": "2026-03-26"
+    }
+  },
+  {
+    "date": "2026-03-25",
+    "generated": "2026-03-25T07:00:00+00:00",
+    "items": [
+      {
+        "person": "Andrej Karpathy",
+        "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "2025 LLM Year in Review",
+        "description": "2025 Year in Review of LLM paradigm changes",
+        "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+        "published": "2026-03-26",
+        "relevance": ""
+      },
+      {
+        "person": "OpenAI",
+        "role": "AI research lab, makers of GPT & o1",
+        "platform": "Blog",
+        "color": "#10B981",
+        "title": "Inside our approach to the Model Spec",
+        "description": "Learn how OpenAI\u2019s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.",
+        "url": "https://openai.com/index/our-approach-to-the-model-spec",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Lenny Rachitsky",
+        "role": "Writes Lenny's Newsletter, top PM resource",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "How Stripe built \u201cminions\u201d\u2014AI coding agents that ship 1,300 PRs weekly from Slack reactions | Steve Kaliski (Stripe engineer)",
+        "description": "Watch now | &#127897;&#65039; How Stripe engineers deploy AI agents that write PRs from Slack reactions, plus a demo of machine-to-machine payments that plan a birthday party for $5.47",
+        "url": "https://www.lennysnewsletter.com/p/how-stripe-built-minionsai-coding",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Swyx / Shawn Wang",
+        "role": "AI engineer, runs latent.space podcast",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "[AINews] Apple's War on Slop",
+        "description": "a quiet day lets us reflect on the End of Sora, LiteLLM, AI2, and other not so happy news.",
+        "url": "https://www.latent.space/p/ainews-apples-war-on-slop",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Peter Yang",
+        "role": "PM at Roblox, writes Product Compass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Claude Team is Shipping Like Crazy: 74 Releases in 52 Days",
+        "description": "Every product release from Feb 3 to Mar 24, tracked to the engineer and their X profile.",
+        "url": "https://www.productcompass.pm/p/claude-shipping-calendar",
+        "published": "2026-03-24",
+        "relevance": ""
+      },
+      {
+        "person": "Julie Zhuo",
+        "role": "CPO, ex-VP Design Facebook, The Looking Glass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Slow down to speed up",
+        "description": "This month, we&#8217;re going to explore what might be the most counterintuitive practice in the age of AI: knowing when to&#160;slow down. Hang on, slow down? Yes, bear with me here. Let&#8217;s bring the debate that&#8217;s probably been going on in your team for some time to a",
+        "url": "https://www.theengineeringmanager.com/growth/slow-down-to-speed-up/",
+        "published": "2026-03-13",
+        "relevance": ""
+      },
+      {
+        "person": "Ethan Mollick",
+        "role": "Wharton professor, AI in work & learning",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "The Shape of the Thing",
+        "description": "Where we are right now, and what likely happens next",
+        "url": "https://www.oneusefulthing.org/p/the-shape-of-the-thing",
+        "published": "2026-03-12",
+        "relevance": ""
+      },
+      {
+        "person": "Shreyas Doshi",
+        "role": "Product leader, ex-Stripe Twitter Yahoo",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Musings",
+        "description": "Welcome to Shreyas&#8217; Newsletter by me, Shreyas Mohan.",
+        "url": "https://shreyas.substack.com/p/coming-soon",
+        "published": "2019-12-15",
+        "relevance": ""
+      }
+    ],
+    "daily_pick": {
+      "person": "Gibson Biddle",
+      "role": "Ex-CPO Netflix, product strategy essays",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "url": "https://gibsonbiddle.substack.com",
+      "why": "Consumer-grade product thinking applied to enterprise \u2014 forces different framing.",
+      "date": "2026-03-25"
+    }
+  },
+  {
+    "date": "2026-03-24",
+    "generated": "2026-03-24T07:00:00+00:00",
+    "items": [
+      {
+        "person": "Andrej Karpathy",
+        "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "2025 LLM Year in Review",
+        "description": "2025 Year in Review of LLM paradigm changes",
+        "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+        "published": "2026-03-26",
+        "relevance": ""
+      },
+      {
+        "person": "OpenAI",
+        "role": "AI research lab, makers of GPT & o1",
+        "platform": "Blog",
+        "color": "#10B981",
+        "title": "Inside our approach to the Model Spec",
+        "description": "Learn how OpenAI\u2019s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.",
+        "url": "https://openai.com/index/our-approach-to-the-model-spec",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Lenny Rachitsky",
+        "role": "Writes Lenny's Newsletter, top PM resource",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "How Stripe built \u201cminions\u201d\u2014AI coding agents that ship 1,300 PRs weekly from Slack reactions | Steve Kaliski (Stripe engineer)",
+        "description": "Watch now | &#127897;&#65039; How Stripe engineers deploy AI agents that write PRs from Slack reactions, plus a demo of machine-to-machine payments that plan a birthday party for $5.47",
+        "url": "https://www.lennysnewsletter.com/p/how-stripe-built-minionsai-coding",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Swyx / Shawn Wang",
+        "role": "AI engineer, runs latent.space podcast",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "[AINews] Apple's War on Slop",
+        "description": "a quiet day lets us reflect on the End of Sora, LiteLLM, AI2, and other not so happy news.",
+        "url": "https://www.latent.space/p/ainews-apples-war-on-slop",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Peter Yang",
+        "role": "PM at Roblox, writes Product Compass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Claude Team is Shipping Like Crazy: 74 Releases in 52 Days",
+        "description": "Every product release from Feb 3 to Mar 24, tracked to the engineer and their X profile.",
+        "url": "https://www.productcompass.pm/p/claude-shipping-calendar",
+        "published": "2026-03-24",
+        "relevance": ""
+      },
+      {
+        "person": "Julie Zhuo",
+        "role": "CPO, ex-VP Design Facebook, The Looking Glass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Slow down to speed up",
+        "description": "This month, we&#8217;re going to explore what might be the most counterintuitive practice in the age of AI: knowing when to&#160;slow down. Hang on, slow down? Yes, bear with me here. Let&#8217;s bring the debate that&#8217;s probably been going on in your team for some time to a",
+        "url": "https://www.theengineeringmanager.com/growth/slow-down-to-speed-up/",
+        "published": "2026-03-13",
+        "relevance": ""
+      },
+      {
+        "person": "Ethan Mollick",
+        "role": "Wharton professor, AI in work & learning",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "The Shape of the Thing",
+        "description": "Where we are right now, and what likely happens next",
+        "url": "https://www.oneusefulthing.org/p/the-shape-of-the-thing",
+        "published": "2026-03-12",
+        "relevance": ""
+      },
+      {
+        "person": "Shreyas Doshi",
+        "role": "Product leader, ex-Stripe Twitter Yahoo",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Musings",
+        "description": "Welcome to Shreyas&#8217; Newsletter by me, Shreyas Mohan.",
+        "url": "https://shreyas.substack.com/p/coming-soon",
+        "published": "2019-12-15",
+        "relevance": ""
+      }
+    ],
+    "daily_pick": {
+      "person": "Marty Cagan",
+      "role": "SVPG founder, Inspired & Empowered author",
+      "platform": "Blog",
+      "color": "#6B7280",
+      "url": "https://www.svpg.com/articles",
+      "why": "The canonical product leadership framework \u2014 good calibration for senior PM work.",
+      "date": "2026-03-24"
+    }
+  },
+  {
+    "date": "2026-03-23",
+    "generated": "2026-03-23T07:00:00+00:00",
+    "items": [
+      {
+        "person": "Andrej Karpathy",
+        "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "2025 LLM Year in Review",
+        "description": "2025 Year in Review of LLM paradigm changes",
+        "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+        "published": "2026-03-26",
+        "relevance": ""
+      },
+      {
+        "person": "OpenAI",
+        "role": "AI research lab, makers of GPT & o1",
+        "platform": "Blog",
+        "color": "#10B981",
+        "title": "Inside our approach to the Model Spec",
+        "description": "Learn how OpenAI\u2019s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.",
+        "url": "https://openai.com/index/our-approach-to-the-model-spec",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Lenny Rachitsky",
+        "role": "Writes Lenny's Newsletter, top PM resource",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "How Stripe built \u201cminions\u201d\u2014AI coding agents that ship 1,300 PRs weekly from Slack reactions | Steve Kaliski (Stripe engineer)",
+        "description": "Watch now | &#127897;&#65039; How Stripe engineers deploy AI agents that write PRs from Slack reactions, plus a demo of machine-to-machine payments that plan a birthday party for $5.47",
+        "url": "https://www.lennysnewsletter.com/p/how-stripe-built-minionsai-coding",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Swyx / Shawn Wang",
+        "role": "AI engineer, runs latent.space podcast",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "[AINews] Apple's War on Slop",
+        "description": "a quiet day lets us reflect on the End of Sora, LiteLLM, AI2, and other not so happy news.",
+        "url": "https://www.latent.space/p/ainews-apples-war-on-slop",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Peter Yang",
+        "role": "PM at Roblox, writes Product Compass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Claude Team is Shipping Like Crazy: 74 Releases in 52 Days",
+        "description": "Every product release from Feb 3 to Mar 24, tracked to the engineer and their X profile.",
+        "url": "https://www.productcompass.pm/p/claude-shipping-calendar",
+        "published": "2026-03-24",
+        "relevance": ""
+      },
+      {
+        "person": "Julie Zhuo",
+        "role": "CPO, ex-VP Design Facebook, The Looking Glass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Slow down to speed up",
+        "description": "This month, we&#8217;re going to explore what might be the most counterintuitive practice in the age of AI: knowing when to&#160;slow down. Hang on, slow down? Yes, bear with me here. Let&#8217;s bring the debate that&#8217;s probably been going on in your team for some time to a",
+        "url": "https://www.theengineeringmanager.com/growth/slow-down-to-speed-up/",
+        "published": "2026-03-13",
+        "relevance": ""
+      },
+      {
+        "person": "Ethan Mollick",
+        "role": "Wharton professor, AI in work & learning",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "The Shape of the Thing",
+        "description": "Where we are right now, and what likely happens next",
+        "url": "https://www.oneusefulthing.org/p/the-shape-of-the-thing",
+        "published": "2026-03-12",
+        "relevance": ""
+      },
+      {
+        "person": "Shreyas Doshi",
+        "role": "Product leader, ex-Stripe Twitter Yahoo",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Musings",
+        "description": "Welcome to Shreyas&#8217; Newsletter by me, Shreyas Mohan.",
+        "url": "https://shreyas.substack.com/p/coming-soon",
+        "published": "2019-12-15",
+        "relevance": ""
+      }
+    ],
+    "daily_pick": {
+      "person": "Wes Kao",
+      "role": "Maven co-founder, executive communication & management",
+      "platform": "Newsletter",
+      "color": "#8B5CF6",
+      "url": "https://newsletter.weskao.com",
+      "why": "Best writing on managing up, executive presence, and stakeholder influence.",
+      "date": "2026-03-23"
+    }
+  },
+  {
+    "date": "2026-03-22",
+    "generated": "2026-03-22T07:00:00+00:00",
+    "items": [
+      {
+        "person": "Andrej Karpathy",
+        "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "2025 LLM Year in Review",
+        "description": "2025 Year in Review of LLM paradigm changes",
+        "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+        "published": "2026-03-26",
+        "relevance": ""
+      },
+      {
+        "person": "OpenAI",
+        "role": "AI research lab, makers of GPT & o1",
+        "platform": "Blog",
+        "color": "#10B981",
+        "title": "Inside our approach to the Model Spec",
+        "description": "Learn how OpenAI\u2019s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.",
+        "url": "https://openai.com/index/our-approach-to-the-model-spec",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Lenny Rachitsky",
+        "role": "Writes Lenny's Newsletter, top PM resource",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "How Stripe built \u201cminions\u201d\u2014AI coding agents that ship 1,300 PRs weekly from Slack reactions | Steve Kaliski (Stripe engineer)",
+        "description": "Watch now | &#127897;&#65039; How Stripe engineers deploy AI agents that write PRs from Slack reactions, plus a demo of machine-to-machine payments that plan a birthday party for $5.47",
+        "url": "https://www.lennysnewsletter.com/p/how-stripe-built-minionsai-coding",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Swyx / Shawn Wang",
+        "role": "AI engineer, runs latent.space podcast",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "[AINews] Apple's War on Slop",
+        "description": "a quiet day lets us reflect on the End of Sora, LiteLLM, AI2, and other not so happy news.",
+        "url": "https://www.latent.space/p/ainews-apples-war-on-slop",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Peter Yang",
+        "role": "PM at Roblox, writes Product Compass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Claude Team is Shipping Like Crazy: 74 Releases in 52 Days",
+        "description": "Every product release from Feb 3 to Mar 24, tracked to the engineer and their X profile.",
+        "url": "https://www.productcompass.pm/p/claude-shipping-calendar",
+        "published": "2026-03-24",
+        "relevance": ""
+      },
+      {
+        "person": "Julie Zhuo",
+        "role": "CPO, ex-VP Design Facebook, The Looking Glass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Slow down to speed up",
+        "description": "This month, we&#8217;re going to explore what might be the most counterintuitive practice in the age of AI: knowing when to&#160;slow down. Hang on, slow down? Yes, bear with me here. Let&#8217;s bring the debate that&#8217;s probably been going on in your team for some time to a",
+        "url": "https://www.theengineeringmanager.com/growth/slow-down-to-speed-up/",
+        "published": "2026-03-13",
+        "relevance": ""
+      },
+      {
+        "person": "Ethan Mollick",
+        "role": "Wharton professor, AI in work & learning",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "The Shape of the Thing",
+        "description": "Where we are right now, and what likely happens next",
+        "url": "https://www.oneusefulthing.org/p/the-shape-of-the-thing",
+        "published": "2026-03-12",
+        "relevance": ""
+      },
+      {
+        "person": "Shreyas Doshi",
+        "role": "Product leader, ex-Stripe Twitter Yahoo",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Musings",
+        "description": "Welcome to Shreyas&#8217; Newsletter by me, Shreyas Mohan.",
+        "url": "https://shreyas.substack.com/p/coming-soon",
+        "published": "2019-12-15",
+        "relevance": ""
+      }
+    ],
+    "daily_pick": {
+      "person": "Jeremy Howard",
+      "role": "fast.ai founder, practical deep learning",
+      "platform": "Blog",
+      "color": "#6B7280",
+      "url": "https://www.fast.ai/posts.html",
+      "why": "Makes deep learning accessible \u2014 good antidote to research complexity.",
+      "date": "2026-03-22"
+    }
+  },
+  {
+    "date": "2026-03-21",
+    "generated": "2026-03-21T07:00:00+00:00",
+    "items": [
+      {
+        "person": "Andrej Karpathy",
+        "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "2025 LLM Year in Review",
+        "description": "2025 Year in Review of LLM paradigm changes",
+        "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+        "published": "2026-03-26",
+        "relevance": ""
+      },
+      {
+        "person": "OpenAI",
+        "role": "AI research lab, makers of GPT & o1",
+        "platform": "Blog",
+        "color": "#10B981",
+        "title": "Inside our approach to the Model Spec",
+        "description": "Learn how OpenAI\u2019s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.",
+        "url": "https://openai.com/index/our-approach-to-the-model-spec",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Lenny Rachitsky",
+        "role": "Writes Lenny's Newsletter, top PM resource",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "How Stripe built \u201cminions\u201d\u2014AI coding agents that ship 1,300 PRs weekly from Slack reactions | Steve Kaliski (Stripe engineer)",
+        "description": "Watch now | &#127897;&#65039; How Stripe engineers deploy AI agents that write PRs from Slack reactions, plus a demo of machine-to-machine payments that plan a birthday party for $5.47",
+        "url": "https://www.lennysnewsletter.com/p/how-stripe-built-minionsai-coding",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Swyx / Shawn Wang",
+        "role": "AI engineer, runs latent.space podcast",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "[AINews] Apple's War on Slop",
+        "description": "a quiet day lets us reflect on the End of Sora, LiteLLM, AI2, and other not so happy news.",
+        "url": "https://www.latent.space/p/ainews-apples-war-on-slop",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Peter Yang",
+        "role": "PM at Roblox, writes Product Compass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Claude Team is Shipping Like Crazy: 74 Releases in 52 Days",
+        "description": "Every product release from Feb 3 to Mar 24, tracked to the engineer and their X profile.",
+        "url": "https://www.productcompass.pm/p/claude-shipping-calendar",
+        "published": "2026-03-24",
+        "relevance": ""
+      },
+      {
+        "person": "Julie Zhuo",
+        "role": "CPO, ex-VP Design Facebook, The Looking Glass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Slow down to speed up",
+        "description": "This month, we&#8217;re going to explore what might be the most counterintuitive practice in the age of AI: knowing when to&#160;slow down. Hang on, slow down? Yes, bear with me here. Let&#8217;s bring the debate that&#8217;s probably been going on in your team for some time to a",
+        "url": "https://www.theengineeringmanager.com/growth/slow-down-to-speed-up/",
+        "published": "2026-03-13",
+        "relevance": ""
+      },
+      {
+        "person": "Ethan Mollick",
+        "role": "Wharton professor, AI in work & learning",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "The Shape of the Thing",
+        "description": "Where we are right now, and what likely happens next",
+        "url": "https://www.oneusefulthing.org/p/the-shape-of-the-thing",
+        "published": "2026-03-12",
+        "relevance": ""
+      },
+      {
+        "person": "Shreyas Doshi",
+        "role": "Product leader, ex-Stripe Twitter Yahoo",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Musings",
+        "description": "Welcome to Shreyas&#8217; Newsletter by me, Shreyas Mohan.",
+        "url": "https://shreyas.substack.com/p/coming-soon",
+        "published": "2019-12-15",
+        "relevance": ""
+      }
+    ],
+    "daily_pick": {
+      "person": "Chris Olah",
+      "role": "AI interpretability researcher, Anthropic",
+      "platform": "Blog",
+      "color": "#D97706",
+      "url": "https://colah.github.io",
+      "why": "Best explainer of how neural nets actually work \u2014 builds intuition for evals.",
+      "date": "2026-03-21"
+    }
+  },
+  {
+    "date": "2026-03-20",
+    "generated": "2026-03-20T07:00:00+00:00",
+    "items": [
+      {
+        "person": "Andrej Karpathy",
+        "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "2025 LLM Year in Review",
+        "description": "2025 Year in Review of LLM paradigm changes",
+        "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+        "published": "2026-03-26",
+        "relevance": ""
+      },
+      {
+        "person": "OpenAI",
+        "role": "AI research lab, makers of GPT & o1",
+        "platform": "Blog",
+        "color": "#10B981",
+        "title": "Inside our approach to the Model Spec",
+        "description": "Learn how OpenAI\u2019s Model Spec serves as a public framework for model behavior, balancing safety, user freedom, and accountability as AI systems advance.",
+        "url": "https://openai.com/index/our-approach-to-the-model-spec",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Lenny Rachitsky",
+        "role": "Writes Lenny's Newsletter, top PM resource",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "How Stripe built \u201cminions\u201d\u2014AI coding agents that ship 1,300 PRs weekly from Slack reactions | Steve Kaliski (Stripe engineer)",
+        "description": "Watch now | &#127897;&#65039; How Stripe engineers deploy AI agents that write PRs from Slack reactions, plus a demo of machine-to-machine payments that plan a birthday party for $5.47",
+        "url": "https://www.lennysnewsletter.com/p/how-stripe-built-minionsai-coding",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Swyx / Shawn Wang",
+        "role": "AI engineer, runs latent.space podcast",
+        "platform": "Blog",
+        "color": "#6B7280",
+        "title": "[AINews] Apple's War on Slop",
+        "description": "a quiet day lets us reflect on the End of Sora, LiteLLM, AI2, and other not so happy news.",
+        "url": "https://www.latent.space/p/ainews-apples-war-on-slop",
+        "published": "2026-03-25",
+        "relevance": ""
+      },
+      {
+        "person": "Peter Yang",
+        "role": "PM at Roblox, writes Product Compass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Claude Team is Shipping Like Crazy: 74 Releases in 52 Days",
+        "description": "Every product release from Feb 3 to Mar 24, tracked to the engineer and their X profile.",
+        "url": "https://www.productcompass.pm/p/claude-shipping-calendar",
+        "published": "2026-03-24",
+        "relevance": ""
+      },
+      {
+        "person": "Julie Zhuo",
+        "role": "CPO, ex-VP Design Facebook, The Looking Glass",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Slow down to speed up",
+        "description": "This month, we&#8217;re going to explore what might be the most counterintuitive practice in the age of AI: knowing when to&#160;slow down. Hang on, slow down? Yes, bear with me here. Let&#8217;s bring the debate that&#8217;s probably been going on in your team for some time to a",
+        "url": "https://www.theengineeringmanager.com/growth/slow-down-to-speed-up/",
+        "published": "2026-03-13",
+        "relevance": ""
+      },
+      {
+        "person": "Ethan Mollick",
+        "role": "Wharton professor, AI in work & learning",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "The Shape of the Thing",
+        "description": "Where we are right now, and what likely happens next",
+        "url": "https://www.oneusefulthing.org/p/the-shape-of-the-thing",
+        "published": "2026-03-12",
+        "relevance": ""
+      },
+      {
+        "person": "Shreyas Doshi",
+        "role": "Product leader, ex-Stripe Twitter Yahoo",
+        "platform": "Substack",
+        "color": "#FF6719",
+        "title": "Musings",
+        "description": "Welcome to Shreyas&#8217; Newsletter by me, Shreyas Mohan.",
+        "url": "https://shreyas.substack.com/p/coming-soon",
+        "published": "2019-12-15",
+        "relevance": ""
+      }
+    ],
+    "daily_pick": {
+      "person": "Dario Amodei",
+      "role": "CEO Anthropic, ex-OpenAI VP Research",
+      "platform": "Blog",
+      "color": "#D97706",
+      "url": "https://darioamodei.com",
+      "why": "Direct from the CEO building Claude \u2014 essential reading for AI strategy.",
+      "date": "2026-03-20"
+    }
+  }
+];
+/* HISTORY_END */
+
 /* NEWS_DATA_START */
 const NEWS_DATA = {
-  "generated": "2026-03-26T00:30:04.242195+00:00",
+  "generated": "2026-03-26T00:51:00.920963+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -231,48 +1128,258 @@ const PLATFORM_COLORS = {
   'YouTube':    '#EF4444',
 };
 
-function render() {
-  // Header meta
-  if (NEWS_DATA.generated) {
-    const d = new Date(NEWS_DATA.generated);
-    document.getElementById('header-meta').textContent =
-      'Updated ' + d.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
-  }
+/* ── State ────────────────────────────────────────────────────────────────── */
+let sb = null;               // Supabase client (null if not configured)
+let currentUser = null;
+let selectedDay = 0;         // index into HISTORY (0 = today)
+let readSet = new Set();     // URLs the user has marked read
+let rosterSet = new Set();   // URLs in the user's news roster
 
-  // Discover card
-  const pick = NEWS_DATA.daily_pick;
+/* ── Supabase init ────────────────────────────────────────────────────────── */
+function initSupabase() {
+  if (!window.SUPABASE_URL || !window.SUPABASE_ANON_KEY) return;
+  sb = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+  sb.auth.onAuthStateChange(async (_event, session) => {
+    currentUser = session?.user || null;
+    renderAuthZone();
+    if (currentUser) await syncFromSupabase();
+    renderSidebar();
+    renderDay(getDay(selectedDay));
+  });
+}
+
+/* ── localStorage helpers ─────────────────────────────────────────────────── */
+function lsGet(key) {
+  try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch { return null; }
+}
+function lsSet(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+
+function loadLocalState() {
+  readSet   = new Set(lsGet('dpn:read')   || []);
+  rosterSet = new Set(lsGet('dpn:roster') || []);
+}
+
+function saveLocalRead()   { lsSet('dpn:read',   [...readSet]);   }
+function saveLocalRoster() { lsSet('dpn:roster', [...rosterSet]); }
+
+/* ── Supabase sync ────────────────────────────────────────────────────────── */
+async function syncFromSupabase() {
+  if (!sb || !currentUser) return;
+  const [reads, roster] = await Promise.all([
+    sb.from('read_items').select('url').eq('user_id', currentUser.id),
+    sb.from('news_roster').select('url').eq('user_id', currentUser.id),
+  ]);
+  (reads.data || []).forEach(r => readSet.add(r.url));
+  (roster.data || []).forEach(r => rosterSet.add(r.url));
+  saveLocalRead();
+  saveLocalRoster();
+}
+
+/* ── Read tracking ────────────────────────────────────────────────────────── */
+async function toggleRead(url) {
+  const nowRead = !readSet.has(url);
+  nowRead ? readSet.add(url) : readSet.delete(url);
+  saveLocalRead();
+  // Update button in DOM
+  const btn = document.querySelector(`.read-btn[data-url="${CSS.escape(url)}"]`);
+  if (btn) { btn.classList.toggle('is-read', nowRead); btn.textContent = nowRead ? '✓' : ''; }
+  renderSidebar();
+  if (sb && currentUser) {
+    if (nowRead) {
+      await sb.from('read_items').upsert({ user_id: currentUser.id, url, read_at: new Date().toISOString() });
+    } else {
+      await sb.from('read_items').delete().eq('user_id', currentUser.id).eq('url', url);
+    }
+  }
+}
+
+/* ── News roster ──────────────────────────────────────────────────────────── */
+async function addToRoster(pick) {
+  if (!currentUser && sb) { openModal('modal-auth'); return; }
+  if (rosterSet.has(pick.url)) return;
+  rosterSet.add(pick.url);
+  saveLocalRoster();
+  const btn = document.getElementById('btn-roster');
+  if (btn) { btn.textContent = '✓ Saved to my roster'; btn.disabled = true; }
+  if (sb && currentUser) {
+    await sb.from('news_roster').upsert({
+      user_id: currentUser.id, person: pick.person, role: pick.role,
+      platform: pick.platform, color: pick.color, url: pick.url,
+    });
+  }
+}
+
+/* ── Auth ─────────────────────────────────────────────────────────────────── */
+function requireSupabase() {
+  if (!sb) {
+    setStatus('auth-status', 'Configure Supabase keys to enable sign-in.');
+    return false;
+  }
+  return true;
+}
+async function signInGoogle() {
+  if (!requireSupabase()) return;
+  await sb.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin } });
+}
+async function signInGitHub() {
+  if (!requireSupabase()) return;
+  await sb.auth.signInWithOAuth({ provider: 'github', options: { redirectTo: location.origin } });
+}
+async function sendMagicLink() {
+  if (!requireSupabase()) return;
+  const email = document.getElementById('auth-email').value.trim();
+  if (!email) return;
+  const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: location.origin } });
+  setStatus('auth-status', error ? error.message : '✓ Check your email for the magic link.');
+}
+async function signOut() {
+  if (sb) await sb.auth.signOut();
+  currentUser = null;
+  renderAuthZone();
+}
+function renderAuthZone() {
+  const zone = document.getElementById('auth-zone');
+  if (!zone) return;
+  if (currentUser) {
+    const name = currentUser.user_metadata?.full_name || currentUser.email || '';
+    const avatar = currentUser.user_metadata?.avatar_url;
+    const initials = name[0]?.toUpperCase() || '?';
+    zone.innerHTML = `
+      <div class="auth-avatar">${avatar ? `<img src="${avatar}" alt="">` : initials}</div>
+      <span class="auth-name">${name}</span>
+      <button class="btn btn-outline" onclick="signOut()">Sign out</button>`;
+  } else {
+    zone.innerHTML = `
+      <button class="btn btn-outline" onclick="openModal('modal-sub')">Subscribe</button>
+      <button class="btn btn-solid" onclick="openModal('modal-auth')">Sign in</button>`;
+  }
+}
+
+/* ── Subscribe ────────────────────────────────────────────────────────────── */
+async function submitSubscribe() {
+  const email = document.getElementById('sub-email').value.trim();
+  if (!email) return;
+  if (sb) {
+    const { error } = await sb.from('subscribers').upsert({ email });
+    setStatus('sub-status', error ? 'Something went wrong — try again.' : '✓ Subscribed! Daily reads coming your way.');
+  } else {
+    setStatus('sub-status', '✓ Thank you! Newsletter launches soon.');
+  }
+}
+
+/* ── Modals ───────────────────────────────────────────────────────────────── */
+function openModal(id)  { document.getElementById(id)?.classList.remove('hidden'); }
+function closeModal(id) { document.getElementById(id)?.classList.add('hidden'); }
+function closeOnBack(e, id) { if (e.target === e.currentTarget) closeModal(id); }
+function setStatus(id, msg) { const el = document.getElementById(id); if (el) el.textContent = msg; }
+
+/* ── Sidebar ──────────────────────────────────────────────────────────────── */
+function getDay(index) {
+  if (HISTORY.length) return HISTORY[index] || HISTORY[0];
+  return NEWS_DATA;
+}
+
+function sidebarLabel(dayData, index) {
+  if (index === 0) return 'Today';
+  if (index === 1) return 'Yesterday';
+  const d = new Date((dayData.date || '').replace(/-/g, '/') + ' 12:00');
+  if (isNaN(d)) return dayData.date || '—';
+  return d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+}
+
+function sidebarDots(dayData) {
+  const items = (dayData.items || []).filter(n => n.url);
+  if (!items.length) return '';
+  const total = Math.min(items.length, 6);
+  const readCount = items.slice(0, total).filter(n => readSet.has(n.url)).length;
+  return '●'.repeat(readCount) + '○'.repeat(total - readCount);
+}
+
+function renderSidebar() {
+  const list = document.getElementById('sidebar-list');
+  if (!list) return;
+  const days = HISTORY.length ? HISTORY : [NEWS_DATA];
+  list.innerHTML = days.map((day, i) => `
+    <div class="sidebar-item ${i === selectedDay ? 'active' : ''}" onclick="selectDay(${i})">
+      <span class="sidebar-date">${sidebarLabel(day, i)}</span>
+      <span class="sidebar-dots">${sidebarDots(day)}</span>
+    </div>`).join('');
+}
+
+/* ── Render ───────────────────────────────────────────────────────────────── */
+function selectDay(index) {
+  selectedDay = index;
+  renderSidebar();
+  renderDay(getDay(index));
+}
+
+function renderDay(dayData) {
+  if (!dayData) return;
+  if (dayData.generated) {
+    const d = new Date(dayData.generated);
+    if (!isNaN(d)) {
+      document.getElementById('header-meta').textContent =
+        'Updated ' + d.toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' });
+    }
+  }
+  if (selectedDay > 0 && dayData.date) {
+    const d = new Date((dayData.date || '').replace(/-/g, '/') + ' 12:00');
+    document.getElementById('news-label').textContent =
+      isNaN(d) ? 'Top of mind' : d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+  } else {
+    document.getElementById('news-label').textContent = 'Top of mind';
+  }
+  renderDiscoverCard(dayData.daily_pick);
+  renderGrid(dayData.items || []);
+}
+
+function renderDiscoverCard(pick) {
   const wrap = document.getElementById('discover-wrap');
-  if (pick) {
-    const color = pick.color || '#6B7280';
-    wrap.innerHTML = `<a class="discover-card" href="${pick.url}" target="_blank">
+  if (!pick || !wrap) { if (wrap) wrap.innerHTML = ''; return; }
+  const color = pick.color || PLATFORM_COLORS[pick.platform] || '#6B7280';
+  const inRoster = rosterSet.has(pick.url);
+  wrap.innerHTML = `
+    <div class="discover-card">
       <div class="discover-icon">✦</div>
       <div class="discover-body">
         <div class="discover-sublabel">Start following</div>
-        <div class="discover-person">${pick.person}</div>
+        <div class="discover-person"><a href="${pick.url}" target="_blank">${pick.person}</a></div>
         <div class="discover-role">${pick.role}</div>
         <div class="discover-why">${pick.why}</div>
-        <span class="discover-chip" style="background:${color}">${pick.platform}</span>
+        <div class="discover-footer">
+          <span class="discover-chip" style="background:${color}">${pick.platform}</span>
+          <button class="btn-roster" id="btn-roster"
+            onclick='addToRoster(${JSON.stringify(pick).replace(/</g,"\\u003c")})'
+            ${inRoster ? 'disabled' : ''}>
+            ${inRoster ? '✓ Saved to my roster' : '+ Add to my roster'}
+          </button>
+        </div>
       </div>
-    </a>`;
-  } else {
-    wrap.innerHTML = '';
-  }
+    </div>`;
+}
 
-  // News grid
-  const items = NEWS_DATA.items || [];
+function renderGrid(items) {
   const grid = document.getElementById('news-grid');
+  if (!grid) return;
   if (!items.length) {
-    grid.innerHTML = '<div class="news-empty">No news yet — check back after the daily fetch.</div>';
+    grid.innerHTML = '<div class="news-empty">No news for this day.</div>';
     return;
   }
   grid.innerHTML = items.map(n => {
     const color = n.color || PLATFORM_COLORS[n.platform] || '#6B7280';
     const chip = `<span class="news-platform-chip" style="background:${color}">${n.platform}</span>`;
     const hasLink = n.url && !n.title?.includes('No recent posts');
+    const isRead = n.url ? readSet.has(n.url) : false;
+    const urlAttr = n.url ? n.url.replace(/"/g, '&quot;') : '';
+    const readBtn = n.url ? `<button class="read-btn ${isRead ? 'is-read' : ''}"
+      data-url="${urlAttr}"
+      onclick="event.preventDefault();event.stopPropagation();toggleRead('${n.url.replace(/'/g,"\\'")}');"
+      title="${isRead ? 'Mark unread' : 'Mark as read'}">${isRead ? '✓' : ''}</button>` : '';
     const inner = `
+      ${readBtn}
       <div class="news-card-top">${chip}<span class="news-person">${n.person}</span></div>
-      ${n.role ? `<div class="news-role">${n.role}</div>` : ''}
-      ${n.title ? `<div class="news-title">${n.title}</div>` : ''}
+      ${n.role   ? `<div class="news-role">${n.role}</div>`   : ''}
+      ${n.title  ? `<div class="news-title">${n.title}</div>` : ''}
       ${n.description ? `<div class="news-desc">${n.description}</div>` : ''}
       <div class="news-footer">
         <span class="news-date">${n.published || ''}</span>
@@ -284,7 +1391,21 @@ function render() {
   }).join('');
 }
 
-render();
+/* ── Init ─────────────────────────────────────────────────────────────────── */
+async function init() {
+  loadLocalState();
+  initSupabase();
+  if (sb) {
+    const { data: { session } } = await sb.auth.getSession();
+    currentUser = session?.user || null;
+    if (currentUser) await syncFromSupabase();
+  }
+  renderAuthZone();
+  renderSidebar();
+  renderDay(getDay(0));
+}
+
+init();
 </script>
 </body>
 </html>

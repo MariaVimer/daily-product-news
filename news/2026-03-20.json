@@ -1,5 +1,6 @@
 {
-  "generated": "2026-03-26T00:51:00.920963+00:00",
+  "date": "2026-03-20",
+  "generated": "2026-03-20T07:00:00+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -91,12 +92,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Clement Delangue",
-    "role": "CEO Hugging Face, open-source AI ecosystem",
-    "platform": "LinkedIn",
-    "color": "#0A66C2",
-    "url": "https://www.linkedin.com/in/clementdelangue",
-    "why": "OSS AI model releases that will hit enterprise before you expect.",
-    "date": "2026-03-26"
+    "person": "Dario Amodei",
+    "role": "CEO Anthropic, ex-OpenAI VP Research",
+    "platform": "Blog",
+    "color": "#D97706",
+    "url": "https://darioamodei.com",
+    "why": "Direct from the CEO building Claude \u2014 essential reading for AI strategy.",
+    "date": "2026-03-20"
   }
 }

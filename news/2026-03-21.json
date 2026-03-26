@@ -1,5 +1,6 @@
 {
-  "generated": "2026-03-26T00:51:00.920963+00:00",
+  "date": "2026-03-21",
+  "generated": "2026-03-21T07:00:00+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -91,12 +92,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Clement Delangue",
-    "role": "CEO Hugging Face, open-source AI ecosystem",
-    "platform": "LinkedIn",
-    "color": "#0A66C2",
-    "url": "https://www.linkedin.com/in/clementdelangue",
-    "why": "OSS AI model releases that will hit enterprise before you expect.",
-    "date": "2026-03-26"
+    "person": "Chris Olah",
+    "role": "AI interpretability researcher, Anthropic",
+    "platform": "Blog",
+    "color": "#D97706",
+    "url": "https://colah.github.io",
+    "why": "Best explainer of how neural nets actually work \u2014 builds intuition for evals.",
+    "date": "2026-03-21"
   }
 }

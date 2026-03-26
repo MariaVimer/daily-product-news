@@ -161,28 +161,62 @@ def fetch_news() -> dict:
     }
 
 
-def inject_news_into_html(news: dict) -> None:
-    """Inject NEWS_DATA into index.html independently of the morning brief pipeline."""
+NEWS_DIR = Path(__file__).parent / "news"
+
+
+def _replace_sentinel(html: str, start: str, end: str, content: str) -> str:
     import re
+    pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.DOTALL)
+    new_block = f"{start}\n{content}\n{end}"
+    return pattern.sub(lambda _: new_block, html) if pattern.search(html) else html
+
+
+def save_daily_snapshot(news: dict) -> None:
+    """Save today's news to news/YYYY-MM-DD.json and prune files older than 30 days."""
+    NEWS_DIR.mkdir(exist_ok=True)
+    today = datetime.now(timezone.utc).date()
+    snapshot = {"date": today.isoformat(), **news}
+    path = NEWS_DIR / f"{today.isoformat()}.json"
+    path.write_text(json.dumps(snapshot, indent=2, default=str))
+    print(f"  ✓ news/{today.isoformat()}.json saved")
+    cutoff = (today - timedelta(days=30)).isoformat()
+    for f in NEWS_DIR.glob("*.json"):
+        if f.stem < cutoff:
+            f.unlink()
+
+
+def build_history() -> list:
+    """Load up to 14 daily snapshots, newest first."""
+    if not NEWS_DIR.exists():
+        return []
+    history = []
+    for f in sorted(NEWS_DIR.glob("*.json"), reverse=True)[:14]:
+        try:
+            history.append(json.loads(f.read_text()))
+        except Exception:
+            pass
+    return history
+
+
+def inject_into_html(news: dict, history: list) -> None:
+    """Inject NEWS_DATA and HISTORY into index.html."""
     html_path = Path(__file__).parent / "index.html"
     if not html_path.exists():
         print("  ⚠ index.html not found — skipping")
         return
     html = html_path.read_text()
-    news_json = json.dumps(news, indent=2, default=str)
-    start, end = "/* NEWS_DATA_START */", "/* NEWS_DATA_END */"
-    pattern = re.compile(re.escape(start) + r".*?" + re.escape(end), re.DOTALL)
-    new_block = f"{start}\nconst NEWS_DATA = {news_json};\n{end}"
-    html = pattern.sub(lambda _: new_block, html) if pattern.search(html) else html
+    html = _replace_sentinel(html, "/* NEWS_DATA_START */", "/* NEWS_DATA_END */",
+                              f"const NEWS_DATA = {json.dumps(news, indent=2, default=str)};")
+    html = _replace_sentinel(html, "/* HISTORY_START */", "/* HISTORY_END */",
+                              f"const HISTORY = {json.dumps(history, indent=2, default=str)};")
     html_path.write_text(html)
-    print("  ✓ index.html NEWS_DATA updated")
+    print(f"  ✓ index.html updated ({len(history)} days in history)")
 
 
 if __name__ == "__main__":
     from dotenv import load_dotenv
     load_dotenv()
     news = fetch_news()
-    # Save to latest_news.json
     NEWS_PATH.write_text(json.dumps(news, indent=2, default=str))
     print(f"  ✓ latest_news.json saved ({len(news['items'])} items)")
     for item in news["items"]:
@@ -190,4 +224,6 @@ if __name__ == "__main__":
     if news.get("daily_pick"):
         p = news["daily_pick"]
         print(f"  ✦ Today's pick: {p['person']} ({p['platform']})")
-    inject_news_into_html(news)
+    save_daily_snapshot(news)
+    history = build_history()
+    inject_into_html(news, history)

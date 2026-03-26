@@ -1,5 +1,6 @@
 {
-  "generated": "2026-03-26T00:51:00.920963+00:00",
+  "date": "2026-03-24",
+  "generated": "2026-03-24T07:00:00+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -91,12 +92,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Clement Delangue",
-    "role": "CEO Hugging Face, open-source AI ecosystem",
-    "platform": "LinkedIn",
-    "color": "#0A66C2",
-    "url": "https://www.linkedin.com/in/clementdelangue",
-    "why": "OSS AI model releases that will hit enterprise before you expect.",
-    "date": "2026-03-26"
+    "person": "Marty Cagan",
+    "role": "SVPG founder, Inspired & Empowered author",
+    "platform": "Blog",
+    "color": "#6B7280",
+    "url": "https://www.svpg.com/articles",
+    "why": "The canonical product leadership framework \u2014 good calibration for senior PM work.",
+    "date": "2026-03-24"
   }
 }
