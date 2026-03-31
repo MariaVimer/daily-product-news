@@ -1,5 +1,5 @@
 {
-  "generated": "2026-03-31T11:52:49.291086+00:00",
+  "generated": "2026-03-31T12:52:32.562472+00:00",
   "items": [
     {
       "person": "Google DeepMind",
@@ -24,6 +24,17 @@
       "relevance": ""
     },
     {
+      "person": "Lenny Rachitsky",
+      "role": "Writes Lenny's Newsletter, top PM resource",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "OpenClaw: The complete guide to building, training, and living with your personal AI agent",
+      "description": "I built a team of 9 AI agents that run my work and life. Here's how you can too.",
+      "url": "https://www.lennysnewsletter.com/p/openclaw-the-complete-guide-to-building",
+      "published": "2026-03-31",
+      "relevance": ""
+    },
+    {
       "person": "Swyx / Shawn Wang",
       "role": "AI engineer, runs latent.space podcast",
       "platform": "Blog",
@@ -42,17 +53,6 @@
       "title": "Why Your Pricing Changes Take Quarters Instead of Hours",
       "description": "The four-pillar architecture behind companies like Vercel, Clay, and Supabase that ship pricing changes in hours, not quarters",
       "url": "https://www.productcompass.pm/p/pricing-architecture-four-pillars",
-      "published": "2026-03-30",
-      "relevance": ""
-    },
-    {
-      "person": "Lenny Rachitsky",
-      "role": "Writes Lenny's Newsletter, top PM resource",
-      "platform": "Substack",
-      "color": "#FF6719",
-      "title": "\ud83c\udf99\ufe0f This week on How I AI: How Stripe built \u201cminions\u201d\u2014AI coding agents that ship 1,300 PRs per week + How to turn Claude Code into your personal life operating system",
-      "description": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
-      "url": "https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-how-stripe",
       "published": "2026-03-30",
       "relevance": ""
     },
