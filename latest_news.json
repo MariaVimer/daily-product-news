@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-02T11:49:35.159434+00:00",
+  "generated": "2026-04-02T12:46:40.918174+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -9,6 +9,17 @@
       "title": "2025 LLM Year in Review",
       "description": "2025 Year in Review of LLM paradigm changes",
       "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+      "published": "2026-04-02",
+      "relevance": ""
+    },
+    {
+      "person": "Lenny Rachitsky",
+      "role": "Writes Lenny's Newsletter, top PM resource",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "An AI state of the union: We\u2019ve passed the inflection point, dark factories are coming, and automation timelines | Simon Willison",
+      "description": "Listen now | Simon Willison on why November 2025 changed software engineering forever, the lethal trifecta, his top agentic engineering patterns, and much more",
+      "url": "https://www.lennysnewsletter.com/p/an-ai-state-of-the-union",
       "published": "2026-04-02",
       "relevance": ""
     },
@@ -31,17 +42,6 @@
       "title": "Gradient Labs gives every bank customer an AI account manager",
       "description": "Gradient Labs uses GPT-4.1 and GPT-5.4 mini and nano to power AI agents that automate banking support workflows with low latency and high reliability.",
       "url": "https://openai.com/index/gradient-labs",
-      "published": "2026-04-01",
-      "relevance": ""
-    },
-    {
-      "person": "Lenny Rachitsky",
-      "role": "Writes Lenny's Newsletter, top PM resource",
-      "platform": "Substack",
-      "color": "#FF6719",
-      "title": "Listen: OpenClaw: A power-user's guide to the most powerful personal AI tool since ChatGPT",
-      "description": "An audio edition of Lenny's Newsletter post (powered by AI)",
-      "url": "https://www.lennysnewsletter.com/p/listen-openclaw-a-power-users-guide",
       "published": "2026-04-01",
       "relevance": ""
     },
