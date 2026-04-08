@@ -1,6 +1,17 @@
 {
-  "generated": "2026-04-08T11:56:26.544412+00:00",
+  "generated": "2026-04-08T12:56:23.522167+00:00",
   "items": [
+    {
+      "person": "OpenAI",
+      "role": "AI research lab, makers of GPT & o1",
+      "platform": "Blog",
+      "color": "#10B981",
+      "title": "Introducing the Child Safety Blueprint",
+      "description": "Discover OpenAI\u2019s Child Safety Blueprint\u2014a roadmap for building AI responsibly with safeguards, age-appropriate design, and collaboration to protect and empower young people online.",
+      "url": "https://openai.com/index/introducing-child-safety-blueprint",
+      "published": "2026-04-08",
+      "relevance": ""
+    },
     {
       "person": "Andrej Karpathy",
       "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
@@ -17,9 +28,9 @@
       "role": "Writes Lenny's Newsletter, top PM resource",
       "platform": "Substack",
       "color": "#FF6719",
-      "title": "Listen: A visual guide to getting out of a creative slump",
-      "description": "An audio edition of Lenny's Newsletter post",
-      "url": "https://www.lennysnewsletter.com/p/listen-a-visual-guide-to-getting",
+      "title": "I built a custom Slack inbox. It was easier than you\u2019d think. | Yash Tekriwal (Clay)",
+      "description": "Watch now | &#127897;&#65039; How Yash built a Slack digest and Kanban dashboard using OpenAI agents and Perplexity Computer to reduce 150 daily notifications to ~30 actionable tasks",
+      "url": "https://www.lennysnewsletter.com/p/i-built-a-custom-slack-inbox-it-was",
       "published": "2026-04-08",
       "relevance": ""
     },
@@ -32,17 +43,6 @@
       "description": "Anthropic steps up the offensive vs OpenAI's upcoming IPO woes",
       "url": "https://www.latent.space/p/ainews-anthropic-30b-arr-project",
       "published": "2026-04-08",
-      "relevance": ""
-    },
-    {
-      "person": "OpenAI",
-      "role": "AI research lab, makers of GPT & o1",
-      "platform": "Blog",
-      "color": "#10B981",
-      "title": "Announcing the OpenAI Safety Fellowship",
-      "description": "A pilot program to support independent safety and alignment research and develop the next generation of talent",
-      "url": "https://openai.com/index/introducing-openai-safety-fellowship",
-      "published": "2026-04-06",
       "relevance": ""
     },
     {
