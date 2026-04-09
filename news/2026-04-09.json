@@ -1,7 +1,18 @@
 {
   "date": "2026-04-09",
-  "generated": "2026-04-09T11:56:25.055529+00:00",
+  "generated": "2026-04-09T12:58:46.579309+00:00",
   "items": [
+    {
+      "person": "OpenAI",
+      "role": "AI research lab, makers of GPT & o1",
+      "platform": "Blog",
+      "color": "#10B981",
+      "title": "OpenAI Full Fan Mode Contest: Terms & Conditions",
+      "description": "Explore the official terms and conditions for the OpenAI Full Fan Mode Contest, including eligibility, entry steps, judging criteria, and prize details. Learn how to participate, submit your entry on Instagram, and win IPL match tickets.",
+      "url": "https://openai.com/index/full-fan-mode-contest-terms-conditions",
+      "published": "2026-04-09",
+      "relevance": ""
+    },
     {
       "person": "Andrej Karpathy",
       "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
@@ -11,17 +22,6 @@
       "description": "2025 Year in Review of LLM paradigm changes",
       "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
       "published": "2026-04-09",
-      "relevance": ""
-    },
-    {
-      "person": "OpenAI",
-      "role": "AI research lab, makers of GPT & o1",
-      "platform": "Blog",
-      "color": "#10B981",
-      "title": "The next phase of enterprise AI",
-      "description": "OpenAI outlines the next phase of enterprise AI, as adoption accelerates across industries with Frontier, ChatGPT Enterprise, Codex, and company-wide AI agents.",
-      "url": "https://openai.com/index/next-phase-of-enterprise-ai",
-      "published": "2026-04-08",
       "relevance": ""
     },
     {
