@@ -1,6 +1,6 @@
 {
   "date": "2026-04-14",
-  "generated": "2026-04-14T11:58:39.070385+00:00",
+  "generated": "2026-04-14T12:59:53.854178+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -10,6 +10,17 @@
       "title": "2025 LLM Year in Review",
       "description": "2025 Year in Review of LLM paradigm changes",
       "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+      "published": "2026-04-14",
+      "relevance": ""
+    },
+    {
+      "person": "Lenny Rachitsky",
+      "role": "Writes Lenny's Newsletter, top PM resource",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "Not all AI agents are created equal",
+      "description": "A framework for categorizing and prioritizing your agent initiatives",
+      "url": "https://www.lennysnewsletter.com/p/not-all-ai-agents-are-created-equal",
       "published": "2026-04-14",
       "relevance": ""
     },
@@ -43,17 +54,6 @@
       "title": "Towards developing future-ready skills with generative AI",
       "description": "Education Innovation",
       "url": "https://research.google/blog/towards-developing-future-ready-skills-with-generative-ai/",
-      "published": "2026-04-13",
-      "relevance": ""
-    },
-    {
-      "person": "Lenny Rachitsky",
-      "role": "Writes Lenny's Newsletter, top PM resource",
-      "platform": "Substack",
-      "color": "#FF6719",
-      "title": "\ud83c\udf99\ufe0f This week on How I AI: Claude Cowork tutorial for non-engineers + Build your own Slack inbox (for $0)",
-      "description": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
-      "url": "https://www.lennysnewsletter.com/p/this-week-on-how-i-ai-claude-cowork",
       "published": "2026-04-13",
       "relevance": ""
     },
