@@ -1,5 +1,5 @@
 {
-  "generated": "2026-04-22T12:00:06.623602+00:00",
+  "generated": "2026-04-22T12:59:49.799417+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -9,6 +9,17 @@
       "title": "2025 LLM Year in Review",
       "description": "2025 Year in Review of LLM paradigm changes",
       "url": "https://karpathy.bearblog.dev/year-in-review-2025/",
+      "published": "2026-04-22",
+      "relevance": ""
+    },
+    {
+      "person": "Lenny Rachitsky",
+      "role": "Writes Lenny's Newsletter, top PM resource",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "What Claude Design is actually good for (and why Figma isn\u2019t dead yet)",
+      "description": "Watch now | &#127897;&#65039;I built a landing page, slides, and an unhinged redesign to find out what Claude Design is actually good at&#8212;plus why GPT Image 2.0 might change how you create brand assets",
+      "url": "https://www.lennysnewsletter.com/p/what-claude-design-is-actually-good",
       "published": "2026-04-22",
       "relevance": ""
     },
@@ -42,17 +53,6 @@
       "title": "ReasoningBank: Enabling agents to learn from experience",
       "description": "Generative AI",
       "url": "https://research.google/blog/reasoningbank-enabling-agents-to-learn-from-experience/",
-      "published": "2026-04-21",
-      "relevance": ""
-    },
-    {
-      "person": "Lenny Rachitsky",
-      "role": "Writes Lenny's Newsletter, top PM resource",
-      "platform": "Substack",
-      "color": "#FF6719",
-      "title": "New: A free year of Cursor, Google AI Pro, Notion, Supabase, Gumloop, and Fin for subscribers",
-      "description": "Now 25 incredible products totaling over $30,000 in value&#8212;free with your Lenny&#8217;s Newsletter subscription",
-      "url": "https://www.lennysnewsletter.com/p/new-a-free-year-of-cursor-google",
       "published": "2026-04-21",
       "relevance": ""
     },
