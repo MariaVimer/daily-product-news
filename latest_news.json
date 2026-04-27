@@ -1,6 +1,17 @@
 {
-  "generated": "2026-04-27T12:20:50.272085+00:00",
+  "generated": "2026-04-27T13:15:56.323328+00:00",
   "items": [
+    {
+      "person": "OpenAI",
+      "role": "AI research lab, makers of GPT & o1",
+      "platform": "Blog",
+      "color": "#10B981",
+      "title": "The next phase of the Microsoft OpenAI partnership",
+      "description": "OpenAI and Microsoft announce an amended agreement that simplifies the partnership, adds long-term clarity, and supports continued AI innovation at scale.",
+      "url": "https://openai.com/index/next-phase-of-microsoft-partnership",
+      "published": "2026-04-27",
+      "relevance": ""
+    },
     {
       "person": "Andrej Karpathy",
       "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
@@ -21,17 +32,6 @@
       "description": "Listen now | &#127897;&#65039;Jason Levin (CEO of Memelord) shows how he built a $100K ARR meme company without coding&#8212;plus why every marketer should vibe code and how agents are becoming his primary users",
       "url": "https://www.lennysnewsletter.com/p/from-a-690-newsletter-to-3m-api-how",
       "published": "2026-04-27",
-      "relevance": ""
-    },
-    {
-      "person": "OpenAI",
-      "role": "AI research lab, makers of GPT & o1",
-      "platform": "Blog",
-      "color": "#10B981",
-      "title": "Our principles",
-      "description": "Our mission is to ensure that AGI benefits all of humanity. Sam Altman shares five principles that guide our work.",
-      "url": "https://openai.com/index/our-principles",
-      "published": "2026-04-26",
       "relevance": ""
     },
     {
