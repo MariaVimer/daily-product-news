@@ -10,7 +10,6 @@ A feed that pulls RSS posts from a fixed list of product and AI thinkers, synthe
 
 The problem it solves is simple: staying current without the context-switching. You open one URL, you see what's worth reading today, and you move on.
 
-Live site: https://daily-product-news.vercel.app
 
 ---
 
