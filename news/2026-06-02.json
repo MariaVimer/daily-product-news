@@ -1,15 +1,15 @@
 {
   "date": "2026-06-02",
-  "generated": "2026-06-02T14:55:23.441679+00:00",
+  "generated": "2026-06-02T15:57:43.372466+00:00",
   "items": [
     {
       "person": "OpenAI",
       "role": "AI research lab, makers of GPT & o1",
       "platform": "Blog",
       "color": "#10B981",
-      "title": "Advancing youth safety and opportunity through global leadership",
-      "description": "OpenAI calls for global action on youth AI safety through a dedicated AI Safety Institute",
-      "url": "https://openai.com/index/advancing-youth-safety-and-opportunity-through-global-leadership",
+      "title": "Travelers deploys AI-powered claims countrywide with OpenAI",
+      "description": "Travelers built an AI-powered Claim Assistant with OpenAI to guide customers through filing claims, provide 24/7 support, and scale operations during peak demand.",
+      "url": "https://openai.com/index/travelers",
       "published": "2026-06-02",
       "relevance": ""
     },
