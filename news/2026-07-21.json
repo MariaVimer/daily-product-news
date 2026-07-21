@@ -1,6 +1,6 @@
 {
   "date": "2026-07-21",
-  "generated": "2026-07-21T12:23:59.808288+00:00",
+  "generated": "2026-07-21T13:14:19.261420+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -10,6 +10,17 @@
       "title": "Sequoia Ascent 2026 summary",
       "description": "Summary of my talk at Sequoia Ascent",
       "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
+      "published": "2026-07-21",
+      "relevance": ""
+    },
+    {
+      "person": "Lenny Rachitsky",
+      "role": "Writes Lenny's Newsletter, top PM resource",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "Why a sabbatical can change everything",
+      "description": "How to take Big Time Off",
+      "url": "https://www.lennysnewsletter.com/p/how-to-take-a-sabbatical",
       "published": "2026-07-21",
       "relevance": ""
     },
@@ -32,17 +43,6 @@
       "title": "Safety and alignment in an era of long-horizon models",
       "description": "OpenAI shares lessons from deploying long-running AI models, highlighting new safety risks, observed failures, and improved safeguards through iterative deployment.",
       "url": "https://openai.com/index/safety-alignment-long-horizon-models",
-      "published": "2026-07-20",
-      "relevance": ""
-    },
-    {
-      "person": "Lenny Rachitsky",
-      "role": "Writes Lenny's Newsletter, top PM resource",
-      "platform": "Substack",
-      "color": "#FF6719",
-      "title": "\ud83c\udf99\ufe0f How I AI: How the founder of Morning Brew built a Claude content machine that never runs out of ideas",
-      "description": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
-      "url": "https://www.lennysnewsletter.com/p/how-i-ai-how-the-founder-of-morning",
       "published": "2026-07-20",
       "relevance": ""
     },
