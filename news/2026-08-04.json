@@ -1,6 +1,6 @@
 {
   "date": "2026-08-04",
-  "generated": "2026-08-04T13:03:18.899148+00:00",
+  "generated": "2026-08-04T13:44:39.899212+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -10,6 +10,17 @@
       "title": "Sequoia Ascent 2026 summary",
       "description": "Summary of my talk at Sequoia Ascent",
       "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
+      "published": "2026-08-04",
+      "relevance": ""
+    },
+    {
+      "person": "Lenny Rachitsky",
+      "role": "Writes Lenny's Newsletter, top PM resource",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "What if you\u2019re not supposed to have a long-term plan?",
+      "description": "The case for career emergence",
+      "url": "https://www.lennysnewsletter.com/p/what-if-youre-not-supposed-to-have",
       "published": "2026-08-04",
       "relevance": ""
     },
@@ -32,17 +43,6 @@
       "title": "Apple is getting this wrong",
       "description": "OpenAI addresses Apple\u2019s baseless lawsuit, corrects claims about its employees, and shares messages documenting what happened.",
       "url": "https://openai.com/index/apple-is-getting-this-wrong",
-      "published": "2026-08-03",
-      "relevance": ""
-    },
-    {
-      "person": "Lenny Rachitsky",
-      "role": "Writes Lenny's Newsletter, top PM resource",
-      "platform": "Substack",
-      "color": "#FF6719",
-      "title": "\ud83c\udf99\ufe0f How I AI: ChatGPT Codex Voice + browser + Sites: an expert\u2019s AI workflow | Nick Baumann (OpenAI)",
-      "description": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
-      "url": "https://www.lennysnewsletter.com/p/how-i-ai-chatgpt-codex-voice-browser",
       "published": "2026-08-03",
       "relevance": ""
     },
