@@ -1,15 +1,15 @@
 {
   "date": "2026-09-21",
-  "generated": "2026-09-21T16:50:27.790696+00:00",
+  "generated": "2026-09-21T17:21:35.340732+00:00",
   "items": [
     {
       "person": "OpenAI",
       "role": "AI research lab, makers of GPT & o1",
       "platform": "Blog",
       "color": "#10B981",
-      "title": "How V7 gives AI agents institutional memory",
-      "description": "Using GPT-5.6, V7 turns scattered company files into context agents can use to complete complex, source-linked work.",
-      "url": "https://openai.com/index/v7",
+      "title": "Building standards for the next phase of AI",
+      "description": "OpenAI outlines a path to shared global AI standards, calling for coordinated evaluation, reporting, and governance to improve safety.",
+      "url": "https://openai.com/index/building-standards-next-phase-ai",
       "published": "2026-09-21",
       "relevance": ""
     },
