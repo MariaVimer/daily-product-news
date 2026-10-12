@@ -1,6 +1,50 @@
 {
-  "generated": "2026-10-09T17:41:00.120136+00:00",
+  "generated": "2026-10-12T20:09:30.972997+00:00",
   "items": [
+    {
+      "person": "Andrej Karpathy",
+      "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
+      "platform": "Blog",
+      "color": "#6B7280",
+      "title": "Sequoia Ascent 2026 summary",
+      "description": "Summary of my talk at Sequoia Ascent",
+      "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
+      "published": "2026-10-12",
+      "relevance": ""
+    },
+    {
+      "person": "Peter Yang",
+      "role": "PM at Roblox, writes Product Compass",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "I Built a Product Swarm With Grok Bot",
+      "description": "Everything you need to know, and how my seven bots work together. Plus a product swarm you can import that works while you sleep.",
+      "url": "https://www.productcompass.pm/p/grok-bot-product-swarm",
+      "published": "2026-10-12",
+      "relevance": ""
+    },
+    {
+      "person": "Lenny Rachitsky",
+      "role": "Writes Lenny's Newsletter, top PM resource",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "\ud83c\udf99\ufe0f How I AI: How Meta designed Muse with Alex Cornell",
+      "description": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
+      "url": "https://www.lennysnewsletter.com/p/how-i-ai-how-meta-designed-muse-with",
+      "published": "2026-10-12",
+      "relevance": ""
+    },
+    {
+      "person": "Swyx / Shawn Wang",
+      "role": "AI engineer, runs latent.space podcast",
+      "platform": "Blog",
+      "color": "#6B7280",
+      "title": "How Anthropic\u2019s Dynamic Workflows Coordinate Claude Agents",
+      "description": "At AI Engineer New York, Anthropic drew on lessons from Unix and Linux to explain how agents can tackle bigger projects without overwhelming developers.",
+      "url": "https://www.latent.space/p/claude-dynamic-workflows",
+      "published": "2026-10-12",
+      "relevance": ""
+    },
     {
       "person": "OpenAI",
       "role": "AI research lab, makers of GPT & o1",
@@ -10,28 +54,6 @@
       "description": "Discover how Sophos uses OpenAI\u2019s Daybreak to cut cyber-threat investigation time by 96% and automate 52% of MDR cases while preserving human oversight.",
       "url": "https://openai.com/index/sophos",
       "published": "2026-10-09",
-      "relevance": ""
-    },
-    {
-      "person": "Andrej Karpathy",
-      "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
-      "platform": "Blog",
-      "color": "#6B7280",
-      "title": "Sequoia Ascent 2026 summary",
-      "description": "Summary of my talk at Sequoia Ascent",
-      "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
-      "published": "2026-10-09",
-      "relevance": ""
-    },
-    {
-      "person": "Swyx / Shawn Wang",
-      "role": "AI engineer, runs latent.space podcast",
-      "platform": "Blog",
-      "color": "#6B7280",
-      "title": "[AINews] not much happened today",
-      "description": "a quiet day.",
-      "url": "https://www.latent.space/p/ainews-not-much-happened-today-60f",
-      "published": "2026-10-08",
       "relevance": ""
     },
     {
@@ -61,32 +83,10 @@
       "role": "AI safety company, makers of Claude",
       "platform": "Blog",
       "color": "#D97706",
-      "title": "Expanding the Cyber Verification Program",
-      "description": "We\u2019re launching a new, expanded version of our Cyber Verification Program, which makes advanced cyber capabilities and reduced blocking classifiers available to qualifying security professionals.",
+      "title": "Introducing Claude Haiku 5.5",
+      "description": "Our fastest, cheapest, and most capable small model yet. It\u2019s designed for high-volume, cost-sensitive work.",
       "url": "https://www.anthropic.com/news/cyber-verification-program",
       "published": "2026-10-06",
-      "relevance": ""
-    },
-    {
-      "person": "Peter Yang",
-      "role": "PM at Roblox, writes Product Compass",
-      "platform": "Substack",
-      "color": "#FF6719",
-      "title": "A New Kind of AI Model: Jev and Quick Wins for PMs",
-      "description": "What Jev is, how it differs from LLMs, how I use it in AskOne, low-hanging fruits for your product, and how to test it almost for free.",
-      "url": "https://www.productcompass.pm/p/jev-decision-model",
-      "published": "2026-10-05",
-      "relevance": ""
-    },
-    {
-      "person": "Lenny Rachitsky",
-      "role": "Writes Lenny's Newsletter, top PM resource",
-      "platform": "Substack",
-      "color": "#FF6719",
-      "title": "\ud83c\udf99\ufe0f How I AI: 8 real Jev use cases + How OpenAI uses ChatGPT Sites (live at DevDay!) + Claire\u2019s DevDay recap",
-      "description": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
-      "url": "https://www.lennysnewsletter.com/p/how-i-ai-8-real-jev-use-cases-how",
-      "published": "2026-10-05",
       "relevance": ""
     },
     {
@@ -124,12 +124,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Cindy Alvarez",
-    "role": "UX research lead, Lean Customer Development author",
-    "platform": "Blog",
-    "color": "#6B7280",
-    "url": "https://cindyalvarez.com",
-    "why": "Customer development rigour that pairs well with PM discovery work.",
-    "date": "2026-10-09"
+    "person": "Dalton Caldwell",
+    "role": "YC managing director, SaaS & B2B product patterns",
+    "platform": "Twitter",
+    "color": "#000000",
+    "url": "https://twitter.com/daltonc",
+    "why": "Pattern-matches B2B AI product mistakes before they become obvious.",
+    "date": "2026-10-12"
   }
 }
