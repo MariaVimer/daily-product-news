@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-12T20:33:20.355638+00:00",
+  "generated": "2026-10-13T18:01:04.280492+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -9,18 +9,7 @@
       "title": "Sequoia Ascent 2026 summary",
       "description": "Summary of my talk at Sequoia Ascent",
       "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
-      "published": "2026-10-12",
-      "relevance": ""
-    },
-    {
-      "person": "Peter Yang",
-      "role": "PM at Roblox, writes Product Compass",
-      "platform": "Substack",
-      "color": "#FF6719",
-      "title": "I Built a Product Swarm With Grok Bot",
-      "description": "Everything you need to know, and how my seven bots work together. Plus a product swarm you can import that works while you sleep.",
-      "url": "https://www.productcompass.pm/p/grok-bot-product-swarm",
-      "published": "2026-10-12",
+      "published": "2026-10-13",
       "relevance": ""
     },
     {
@@ -28,10 +17,10 @@
       "role": "Writes Lenny's Newsletter, top PM resource",
       "platform": "Substack",
       "color": "#FF6719",
-      "title": "\ud83c\udf99\ufe0f How I AI: How Meta designed Muse with Alex Cornell",
-      "description": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
-      "url": "https://www.lennysnewsletter.com/p/how-i-ai-how-meta-designed-muse-with",
-      "published": "2026-10-12",
+      "title": "How to tell if a startup has a moat",
+      "description": "A framework for assessing whether the company you&#8217;re considering joining is built to last",
+      "url": "https://www.lennysnewsletter.com/p/how-to-tell-if-a-startup-has-a-moat",
+      "published": "2026-10-13",
       "relevance": ""
     },
     {
@@ -39,9 +28,20 @@
       "role": "AI engineer, runs latent.space podcast",
       "platform": "Blog",
       "color": "#6B7280",
-      "title": "How Anthropic\u2019s Dynamic Workflows Coordinate Claude Agents",
-      "description": "At AI Engineer New York, Anthropic drew on lessons from Unix and Linux to explain how agents can tackle bigger projects without overwhelming developers.",
-      "url": "https://www.latent.space/p/claude-dynamic-workflows",
+      "title": "[AINews] Meta Muse Wonder & Wonder Full: MSL\u2019s Claude 5.5-tier Frontier Model",
+      "description": "MSL&#8217;s emergence as a frontier lab is finally complete.",
+      "url": "https://www.latent.space/p/ainews-meta-muse-wonder-and-wonder",
+      "published": "2026-10-13",
+      "relevance": ""
+    },
+    {
+      "person": "Peter Yang",
+      "role": "PM at Roblox, writes Product Compass",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "I Built a Product Swarm With Grok Bot. No Code.",
+      "description": "Everything you need to know, and how my seven bots work together. Plus a product swarm you can import that works while you sleep.",
+      "url": "https://www.productcompass.pm/p/grok-bot-product-swarm",
       "published": "2026-10-12",
       "relevance": ""
     },
@@ -124,12 +124,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Dalton Caldwell",
-    "role": "YC managing director, SaaS & B2B product patterns",
+    "person": "Sahil Lavingia",
+    "role": "Gumroad CEO, building-in-public practitioner",
     "platform": "Twitter",
     "color": "#000000",
-    "url": "https://twitter.com/daltonc",
-    "why": "Pattern-matches B2B AI product mistakes before they become obvious.",
-    "date": "2026-10-12"
+    "url": "https://twitter.com/shl",
+    "why": "Radical transparency in product + business \u2014 good foil to big-company thinking.",
+    "date": "2026-10-13"
   }
 }
