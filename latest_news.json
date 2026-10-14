@@ -1,6 +1,17 @@
 {
-  "generated": "2026-10-13T18:37:40.310971+00:00",
+  "generated": "2026-10-14T15:43:27.972895+00:00",
   "items": [
+    {
+      "person": "OpenAI",
+      "role": "AI research lab, makers of GPT & o1",
+      "platform": "Blog",
+      "color": "#10B981",
+      "title": "How Third Moment Research runs 10,000 agents for 36+ hours",
+      "description": "With GPT-6 Astra and GPT-6.1 Sol, Codex, and Daybreak for cybersecurity, this AI lab builds agents that focus for days and improve with use.",
+      "url": "https://openai.com/index/third-moment-research",
+      "published": "2026-10-14",
+      "relevance": ""
+    },
     {
       "person": "Andrej Karpathy",
       "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
@@ -9,7 +20,7 @@
       "title": "Sequoia Ascent 2026 summary",
       "description": "Summary of my talk at Sequoia Ascent",
       "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
-      "published": "2026-10-13",
+      "published": "2026-10-14",
       "relevance": ""
     },
     {
@@ -17,10 +28,10 @@
       "role": "Writes Lenny's Newsletter, top PM resource",
       "platform": "Substack",
       "color": "#FF6719",
-      "title": "How to tell if a startup has a moat",
-      "description": "A framework for assessing whether the company you&#8217;re considering joining is built to last",
-      "url": "https://www.lennysnewsletter.com/p/how-to-tell-if-a-startup-has-a-moat",
-      "published": "2026-10-13",
+      "title": "Meta\u2019s new \u2018Muse Wonder\u2019 model: good for AI agents, bad for design",
+      "description": "Watch now (24 mins) | &#127897;&#65039;Meta launched Muse Wonder with claims of frontier agentic performance, so I ran it headlessly through Claude Code against nearly 20 tasks to find out if any of it is true",
+      "url": "https://www.lennysnewsletter.com/p/metas-new-muse-wonder-model-good",
+      "published": "2026-10-14",
       "relevance": ""
     },
     {
@@ -28,10 +39,10 @@
       "role": "AI engineer, runs latent.space podcast",
       "platform": "Blog",
       "color": "#6B7280",
-      "title": "[AINews] Meta Muse Wonder & Wonder Full: MSL\u2019s Claude 5.5-tier Frontier Model",
-      "description": "MSL&#8217;s emergence as a frontier lab is finally complete.",
-      "url": "https://www.latent.space/p/ainews-meta-muse-wonder-and-wonder",
-      "published": "2026-10-13",
+      "title": "[AINews] AI Engineer NYC: Gemini 4 Argon, Vals AI Benchmarks",
+      "description": "Gemini 4 Argon went GA today, but we already gave it title story 2 weeks ago and most benchmarks, like CursorBench, simply independently confirm their claims.",
+      "url": "https://www.latent.space/p/ainews-ai-engineer-nyc-gemini-4-argon",
+      "published": "2026-10-14",
       "relevance": ""
     },
     {
@@ -54,17 +65,6 @@
       "description": "Everything you need to know, and how my seven bots work together. Plus a product swarm you can import that works while you sleep.",
       "url": "https://www.productcompass.pm/p/grok-bot-product-swarm",
       "published": "2026-10-12",
-      "relevance": ""
-    },
-    {
-      "person": "OpenAI",
-      "role": "AI research lab, makers of GPT & o1",
-      "platform": "Blog",
-      "color": "#10B981",
-      "title": "Sophos cuts threat investigation time by 96% with OpenAI Daybreak",
-      "description": "Discover how Sophos uses OpenAI\u2019s Daybreak to cut cyber-threat investigation time by 96% and automate 52% of MDR cases while preserving human oversight.",
-      "url": "https://openai.com/index/sophos",
-      "published": "2026-10-09",
       "relevance": ""
     },
     {
@@ -124,12 +124,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Sahil Lavingia",
-    "role": "Gumroad CEO, building-in-public practitioner",
-    "platform": "Twitter",
-    "color": "#000000",
-    "url": "https://twitter.com/shl",
-    "why": "Radical transparency in product + business \u2014 good foil to big-company thinking.",
-    "date": "2026-10-13"
+    "person": "Jason Cohen",
+    "role": "WP Engine founder, long-form SaaS strategy essays",
+    "platform": "Blog",
+    "color": "#6B7280",
+    "url": "https://longform.asmartbear.com",
+    "why": "Best essays on enterprise SaaS pricing, positioning, and product strategy.",
+    "date": "2026-10-14"
   }
 }
