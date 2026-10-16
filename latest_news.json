@@ -1,17 +1,6 @@
 {
-  "generated": "2026-10-15T15:55:18.744639+00:00",
+  "generated": "2026-10-16T15:16:53.992157+00:00",
   "items": [
-    {
-      "person": "OpenAI",
-      "role": "AI research lab, makers of GPT & o1",
-      "platform": "Blog",
-      "color": "#10B981",
-      "title": "Teaching students to think and learn through questions",
-      "description": "Celebrate Teachers\u2019 Day with AI for Educators in Brazilian Portuguese and see how Study Mode can help teachers support active, step-by-step learning.",
-      "url": "https://openai.com/index/teaching-students-to-think-and-learn-through-questions",
-      "published": "2026-10-15",
-      "relevance": ""
-    },
     {
       "person": "Andrej Karpathy",
       "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
@@ -20,7 +9,7 @@
       "title": "Sequoia Ascent 2026 summary",
       "description": "Summary of my talk at Sequoia Ascent",
       "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
-      "published": "2026-10-15",
+      "published": "2026-10-16",
       "relevance": ""
     },
     {
@@ -28,9 +17,20 @@
       "role": "AI engineer, runs latent.space podcast",
       "platform": "Blog",
       "color": "#6B7280",
-      "title": "[AINews] Modal\u2019s $1B ARR, $16B Series D makes it NYC\u2019s newest AI Infra Decacorn, 3x usage and 3x valuation in 5 months, 15x in 1 yr",
-      "description": "Sandboxes are all you need.",
-      "url": "https://www.latent.space/p/ainews-modals-1b-arr-16b-series-d",
+      "title": "[AINews] Agents disprove Polysemanticity; greatly improve Interpretability & Alignment",
+      "description": "Nick Cammarata out of nowhere with some major claims!",
+      "url": "https://www.latent.space/p/ainews-agents-disprove-polysemanticity",
+      "published": "2026-10-16",
+      "relevance": ""
+    },
+    {
+      "person": "OpenAI",
+      "role": "AI research lab, makers of GPT & o1",
+      "platform": "Blog",
+      "color": "#10B981",
+      "title": "Bringing GPT-Rosalind to academic research labs",
+      "description": "Introducing the Rosalind Academic Plan, offering eligible academic labs sponsored access to GPT-Rosalind and tools to advance life sciences research.",
+      "url": "https://openai.com/index/introducing-the-rosalind-academic-plan",
       "published": "2026-10-15",
       "relevance": ""
     },
@@ -39,9 +39,9 @@
       "role": "Google's AI research division",
       "platform": "Blog",
       "color": "#3B82F6",
-      "title": "Research@ 2026: 10 ways we're amplifying human ingenuity",
-      "description": "General Science",
-      "url": "https://research.google/blog/research-2026-10-ways-were-amplifying-human-ingenuity/",
+      "title": "Putting Earth AI to work: Geospatial agents for our planet's biggest challenges",
+      "description": "Earth AI",
+      "url": "https://research.google/blog/putting-earth-ai-to-work-geospatial-agents-for-our-planets-biggest-challenges/",
       "published": "2026-10-14",
       "relevance": ""
     },
@@ -124,12 +124,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Simon Willison",
-    "role": "Open-source dev, LLMs in practice (datasette, llm CLI)",
+    "person": "Chip Huyen",
+    "role": "ML Systems author, AI infra & production ML",
     "platform": "Blog",
     "color": "#6B7280",
-    "url": "https://simonwillison.net",
-    "why": "Best practitioner blog on using LLMs in real products \u2014 no hype, all signal.",
-    "date": "2026-10-15"
+    "url": "https://huyenchip.com/blog",
+    "why": "Bridges ML research and production \u2014 critical for AI agent infra decisions.",
+    "date": "2026-10-16"
   }
 }
