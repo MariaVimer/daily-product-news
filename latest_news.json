@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T15:43:28.007231+00:00",
+  "generated": "2026-10-19T17:21:20.791549+00:00",
   "items": [
     {
       "person": "Andrej Karpathy",
@@ -9,40 +9,7 @@
       "title": "Sequoia Ascent 2026 summary",
       "description": "Summary of my talk at Sequoia Ascent",
       "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
-      "published": "2026-10-16",
-      "relevance": ""
-    },
-    {
-      "person": "Swyx / Shawn Wang",
-      "role": "AI engineer, runs latent.space podcast",
-      "platform": "Blog",
-      "color": "#6B7280",
-      "title": "[AINews] Agents disprove Polysemanticity; greatly improve Interpretability & Alignment",
-      "description": "Nick Cammarata out of nowhere with some major claims!",
-      "url": "https://www.latent.space/p/ainews-agents-disprove-polysemanticity",
-      "published": "2026-10-16",
-      "relevance": ""
-    },
-    {
-      "person": "OpenAI",
-      "role": "AI research lab, makers of GPT & o1",
-      "platform": "Blog",
-      "color": "#10B981",
-      "title": "Bringing GPT-Rosalind to academic research labs",
-      "description": "Introducing the Rosalind Academic Plan, offering eligible academic labs sponsored access to GPT-Rosalind and tools to advance life sciences research.",
-      "url": "https://openai.com/index/introducing-the-rosalind-academic-plan",
-      "published": "2026-10-15",
-      "relevance": ""
-    },
-    {
-      "person": "Google DeepMind",
-      "role": "Google's AI research division",
-      "platform": "Blog",
-      "color": "#3B82F6",
-      "title": "Putting Earth AI to work: Geospatial agents for our planet's biggest challenges",
-      "description": "Earth AI",
-      "url": "https://research.google/blog/putting-earth-ai-to-work-geospatial-agents-for-our-planets-biggest-challenges/",
-      "published": "2026-10-14",
+      "published": "2026-10-19",
       "relevance": ""
     },
     {
@@ -50,10 +17,43 @@
       "role": "Writes Lenny's Newsletter, top PM resource",
       "platform": "Substack",
       "color": "#FF6719",
-      "title": "Meta\u2019s new \u2018Muse Wonder\u2019 model: good for AI agents, bad for design",
-      "description": "Watch now (24 mins) | &#127897;&#65039;Meta launched Muse Wonder with claims of frontier agentic performance, so I ran it headlessly through Claude Code against nearly 20 tasks to find out if any of it is true",
-      "url": "https://www.lennysnewsletter.com/p/metas-new-muse-wonder-model-good",
-      "published": "2026-10-14",
+      "title": "\ud83c\udf99\ufe0f How I AI: Meta Muse Wonder + How Brooke Lacey is scaling video with AI",
+      "description": "Your weekly listens from How I AI, part of the Lenny's Podcast Network",
+      "url": "https://www.lennysnewsletter.com/p/how-i-ai-meta-muse-wonder-how-brooke",
+      "published": "2026-10-19",
+      "relevance": ""
+    },
+    {
+      "person": "Swyx / Shawn Wang",
+      "role": "AI engineer, runs latent.space podcast",
+      "platform": "Blog",
+      "color": "#6B7280",
+      "title": "[AINews] High Taste Testers Ep. 1",
+      "description": "a quiet day lets us pilot a new show",
+      "url": "https://www.latent.space/p/ainews-high-taste-testers-ep-1",
+      "published": "2026-10-17",
+      "relevance": ""
+    },
+    {
+      "person": "OpenAI",
+      "role": "AI research lab, makers of GPT & o1",
+      "platform": "Blog",
+      "color": "#10B981",
+      "title": "How Ita\u00fa is building generative AI for its entire customer base",
+      "description": "With ia.i, a conversational interface, and the IARA governance platform, Ita\u00fa is applying its AI First strategy to customers and employees \u2014 in one of Brazil\u2019s most regulated sectors.",
+      "url": "https://openai.com/index/itau-generative-ai",
+      "published": "2026-10-16",
+      "relevance": ""
+    },
+    {
+      "person": "Google DeepMind",
+      "role": "Google's AI research division",
+      "platform": "Blog",
+      "color": "#3B82F6",
+      "title": "Grounding AI agents in biological reality: Building blocks for autonomous wet labs",
+      "description": "General Science",
+      "url": "https://research.google/blog/grounding-ai-agents-in-biological-reality-building-blocks-for-autonomous-wet-labs/",
+      "published": "2026-10-16",
       "relevance": ""
     },
     {
@@ -124,12 +124,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Chip Huyen",
-    "role": "ML Systems author, AI infra & production ML",
+    "person": "Teresa Torres",
+    "role": "Continuous discovery author, product coach",
     "platform": "Blog",
     "color": "#6B7280",
-    "url": "https://huyenchip.com/blog",
-    "why": "Bridges ML research and production \u2014 critical for AI agent infra decisions.",
-    "date": "2026-10-16"
+    "url": "https://www.producttalk.org/blog",
+    "why": "Best framework for evidence-driven product decisions \u2014 directly applicable to evals work.",
+    "date": "2026-10-19"
   }
 }
