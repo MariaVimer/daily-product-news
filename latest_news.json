@@ -1,6 +1,17 @@
 {
-  "generated": "2026-10-20T15:59:00.154510+00:00",
+  "generated": "2026-10-21T15:51:16.650208+00:00",
   "items": [
+    {
+      "person": "OpenAI",
+      "role": "AI research lab, makers of GPT & o1",
+      "platform": "Blog",
+      "color": "#10B981",
+      "title": "OpenAI models are coming to Google Cloud",
+      "description": "OpenAI and Google Cloud are bringing frontier models and Codex workflows to Gemini\u2019s Model Garden, available through Google Cloud Marketplace.",
+      "url": "https://openai.com/index/openai-models-google-cloud",
+      "published": "2026-10-21",
+      "relevance": ""
+    },
     {
       "person": "Andrej Karpathy",
       "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
@@ -9,7 +20,18 @@
       "title": "Sequoia Ascent 2026 summary",
       "description": "Summary of my talk at Sequoia Ascent",
       "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
-      "published": "2026-10-20",
+      "published": "2026-10-21",
+      "relevance": ""
+    },
+    {
+      "person": "Swyx / Shawn Wang",
+      "role": "AI engineer, runs latent.space podcast",
+      "platform": "Blog",
+      "color": "#6B7280",
+      "title": "Claude Mods: Flipping the Harness Inside Out",
+      "description": "Claude Mods is an early form of the Attention Interface. It flips the agent harness paradigm from the harness facing the machine, to the harness facing the human.",
+      "url": "https://www.latent.space/p/claude-mods",
+      "published": "2026-10-21",
       "relevance": ""
     },
     {
@@ -24,25 +46,14 @@
       "relevance": ""
     },
     {
-      "person": "Swyx / Shawn Wang",
-      "role": "AI engineer, runs latent.space podcast",
-      "platform": "Blog",
-      "color": "#6B7280",
-      "title": "[AINews] not much happened today",
-      "description": "Congrats to DeepSeek V4.1 Flash 1017, MiniMax M3.1 Flash, and Mercury 3 (details below) but they&#8217;re not going to be in super wide use just yet.",
-      "url": "https://www.latent.space/p/ainews-not-much-happened-today-f09",
+      "person": "Ethan Mollick",
+      "role": "Wharton professor, AI in work & learning",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "30 Months on the Exponential (in Charts)",
+      "description": "My new book is out today... what happened since the last one",
+      "url": "https://www.oneusefulthing.org/p/30-months-on-the-exponential-in-charts",
       "published": "2026-10-20",
-      "relevance": ""
-    },
-    {
-      "person": "OpenAI",
-      "role": "AI research lab, makers of GPT & o1",
-      "platform": "Blog",
-      "color": "#10B981",
-      "title": "Advancing coding in low\u2011resource programming languages",
-      "description": "Learn how OpenAI is improving ChatGPT across low-resource programming languages, with new evaluations for software engineering, SQLite, and COBOL migration.",
-      "url": "https://openai.com/index/low-resource-programming-languages",
-      "published": "2026-10-19",
       "relevance": ""
     },
     {
@@ -83,21 +94,10 @@
       "role": "AI safety company, makers of Claude",
       "platform": "Blog",
       "color": "#D97706",
-      "title": "Introducing Claude Haiku 5.5",
-      "description": "Our fastest, cheapest, and most capable small model yet. It\u2019s designed for high-volume, cost-sensitive work.",
-      "url": "https://www.anthropic.com/news/cyber-verification-program",
-      "published": "2026-10-06",
-      "relevance": ""
-    },
-    {
-      "person": "Ethan Mollick",
-      "role": "Wharton professor, AI in work & learning",
-      "platform": "Substack",
-      "color": "#FF6719",
-      "title": "The Dot and the Swarm",
-      "description": "Benefitting from the Bitter Lesson",
-      "url": "https://www.oneusefulthing.org/p/the-dot-and-the-swarm",
-      "published": "2026-10-01",
+      "title": "Introducing Claude Opus 5.5",
+      "description": "Claude Opus 5.5 leads in agentic coding and knowledge work, and costs 40% less to run than Opus 5 on typical workloads.",
+      "url": "https://www.anthropic.com/news/announcements",
+      "published": "2026-09-22",
       "relevance": ""
     },
     {
@@ -124,12 +124,12 @@
     }
   ],
   "daily_pick": {
-    "person": "John Cutler",
-    "role": "Product clarity, Amplitude CPO advisor",
+    "person": "Pawel Huryn",
+    "role": "Product frameworks, top PM Substack",
     "platform": "Substack",
     "color": "#FF6719",
-    "url": "https://cutlefish.substack.com",
-    "why": "Cuts through org complexity \u2014 great for PMs navigating cross-team work.",
-    "date": "2026-10-20"
+    "url": "https://www.productcompass.pm",
+    "why": "Practical PM frameworks with strong AI focus \u2014 popular among senior PMs.",
+    "date": "2026-10-21"
   }
 }
