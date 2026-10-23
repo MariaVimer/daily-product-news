@@ -1,15 +1,15 @@
 {
-  "generated": "2026-10-22T16:14:26.902101+00:00",
+  "generated": "2026-10-23T15:39:04.662875+00:00",
   "items": [
     {
       "person": "OpenAI",
       "role": "AI research lab, makers of GPT & o1",
       "platform": "Blog",
       "color": "#10B981",
-      "title": "What FDE means at OpenAI",
-      "description": "What forward deployed engineering means at OpenAI",
-      "url": "https://openai.com/index/forward-deployed-engineering-means",
-      "published": "2026-10-22",
+      "title": "OpenAI and Poland\u2019s NASK partner to advance AI safety and security",
+      "description": "OpenAI and Poland\u2019s NASK are partnering on AI safety, security, and technical research to strengthen safeguards and support a more resilient digital ecosystem.",
+      "url": "https://openai.com/index/openai-nask-ai-safety-security-partnership",
+      "published": "2026-10-23",
       "relevance": ""
     },
     {
@@ -20,7 +20,7 @@
       "title": "Sequoia Ascent 2026 summary",
       "description": "Summary of my talk at Sequoia Ascent",
       "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
-      "published": "2026-10-22",
+      "published": "2026-10-23",
       "relevance": ""
     },
     {
@@ -28,10 +28,10 @@
       "role": "AI engineer, runs latent.space podcast",
       "platform": "Blog",
       "color": "#6B7280",
-      "title": "You are the Team  \u2014 Anekha Sokhal, Moshi",
-      "description": "How Moshi turns market data into actionable insights, and why AI tools have to fit the trader&#8217;s workflow.",
-      "url": "https://www.latent.space/p/moshi",
-      "published": "2026-10-22",
+      "title": "AI Is Getting Good at Math. Here\u2019s Why.",
+      "description": "AI models are solving more mathematical problems. A pattern is emerging in their successes that could help us predict which problems they\u2019ll solve next.",
+      "url": "https://latent.space/p/ai-is-getting-good-at-math/",
+      "published": "2026-10-23",
       "relevance": ""
     },
     {
@@ -124,12 +124,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Dario Amodei",
-    "role": "CEO Anthropic, ex-OpenAI VP Research",
+    "person": "Chris Olah",
+    "role": "AI interpretability researcher, Anthropic",
     "platform": "Blog",
     "color": "#D97706",
-    "url": "https://darioamodei.com",
-    "why": "Direct from the CEO building Claude \u2014 essential reading for AI strategy.",
-    "date": "2026-10-22"
+    "url": "https://colah.github.io",
+    "why": "Best explainer of how neural nets actually work \u2014 builds intuition for evals.",
+    "date": "2026-10-23"
   }
 }
