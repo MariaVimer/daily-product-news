@@ -1,17 +1,6 @@
 {
-  "generated": "2026-10-26T17:50:17.702814+00:00",
+  "generated": "2026-10-27T16:14:31.430481+00:00",
   "items": [
-    {
-      "person": "OpenAI",
-      "role": "AI research lab, makers of GPT & o1",
-      "platform": "Blog",
-      "color": "#10B981",
-      "title": "How Fanatics and OpenAI streamline the fan experience",
-      "description": "Fanatics uses OpenAI to help fans complete their game-day outfits with Shop the Look. Testing across roughly 30,000 MLB products showed 10% higher engagement.",
-      "url": "https://openai.com/index/fanatics-streamline-fan-experience",
-      "published": "2026-10-26",
-      "relevance": ""
-    },
     {
       "person": "Andrej Karpathy",
       "role": "AI researcher, ex-OpenAI, ex-Tesla AI",
@@ -20,6 +9,28 @@
       "title": "Sequoia Ascent 2026 summary",
       "description": "Summary of my talk at Sequoia Ascent",
       "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
+      "published": "2026-10-27",
+      "relevance": ""
+    },
+    {
+      "person": "Swyx / Shawn Wang",
+      "role": "AI engineer, runs latent.space podcast",
+      "platform": "Blog",
+      "color": "#6B7280",
+      "title": "Coding From the Himalayas With an Offline AI Agent",
+      "description": "How to set up and run an offline coding agent using OpenCode, Ollama and Qwen.",
+      "url": "https://latent.space/p/offline-coding/",
+      "published": "2026-10-27",
+      "relevance": ""
+    },
+    {
+      "person": "OpenAI",
+      "role": "AI research lab, makers of GPT & o1",
+      "platform": "Blog",
+      "color": "#10B981",
+      "title": "Greptile takes bug detection beyond code review with GPT-6 Astra",
+      "description": "How Greptile uses GPT-6 Astra to test user workflows, Daybreak to strengthen security, and Codex to reduce rework.",
+      "url": "https://openai.com/index/greptile-code-review-codex-astra",
       "published": "2026-10-26",
       "relevance": ""
     },
@@ -32,17 +43,6 @@
       "description": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
       "url": "https://www.lennysnewsletter.com/p/how-i-ai-claude-duet-honest-review",
       "published": "2026-10-26",
-      "relevance": ""
-    },
-    {
-      "person": "Swyx / Shawn Wang",
-      "role": "AI engineer, runs latent.space podcast",
-      "platform": "Blog",
-      "color": "#6B7280",
-      "title": "[AINews] Kimi 3.1 Pro 104BA-2.8T: Fable-5.1-Class Open Weights narrows Closed-AI lead to 1 month... and Pro Highspeed API with 2-3\u00d7 speed",
-      "description": "We have Fable at home... or so we are being told by paid shills",
-      "url": "https://latent.space/p/ainews-kimi-31/",
-      "published": "2026-10-24",
       "relevance": ""
     },
     {
@@ -124,12 +124,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Marty Cagan",
-    "role": "SVPG founder, Inspired & Empowered author",
-    "platform": "Blog",
-    "color": "#6B7280",
-    "url": "https://www.svpg.com/articles",
-    "why": "The canonical product leadership framework \u2014 good calibration for senior PM work.",
-    "date": "2026-10-26"
+    "person": "Gibson Biddle",
+    "role": "Ex-CPO Netflix, product strategy essays",
+    "platform": "Substack",
+    "color": "#FF6719",
+    "url": "https://gibsonbiddle.substack.com",
+    "why": "Consumer-grade product thinking applied to enterprise \u2014 forces different framing.",
+    "date": "2026-10-27"
   }
 }
