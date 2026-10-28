@@ -1,15 +1,15 @@
 {
-  "generated": "2026-10-27T16:59:16.684704+00:00",
+  "generated": "2026-10-28T17:01:21.511115+00:00",
   "items": [
     {
       "person": "OpenAI",
       "role": "AI research lab, makers of GPT & o1",
       "platform": "Blog",
       "color": "#10B981",
-      "title": "OpenAI expands partnership with Oracle to bring its apps to ChatGPT",
-      "description": "OpenAI and Oracle are expanding their partnership to bring business applications and AI agents into ChatGPT and power new Oracle offerings.",
-      "url": "https://openai.com/index/oracle-apps-in-chatgpt",
-      "published": "2026-10-27",
+      "title": "Legora is building the agentic operating system for legal work",
+      "description": "See how Legora uses OpenAI models, ChatGPT, and Codex to accelerate legal workflows, expand contract analysis, and free lawyers to focus on higher-value work.",
+      "url": "https://openai.com/index/legora-agentic-operating-system-for-legal-work",
+      "published": "2026-10-28",
       "relevance": ""
     },
     {
@@ -20,18 +20,7 @@
       "title": "Sequoia Ascent 2026 summary",
       "description": "Summary of my talk at Sequoia Ascent",
       "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
-      "published": "2026-10-27",
-      "relevance": ""
-    },
-    {
-      "person": "Swyx / Shawn Wang",
-      "role": "AI engineer, runs latent.space podcast",
-      "platform": "Blog",
-      "color": "#6B7280",
-      "title": "Coding From the Himalayas With an Offline AI Agent",
-      "description": "How to set up and run an offline coding agent using OpenCode, Ollama and Qwen.",
-      "url": "https://latent.space/p/offline-coding/",
-      "published": "2026-10-27",
+      "published": "2026-10-28",
       "relevance": ""
     },
     {
@@ -39,10 +28,21 @@
       "role": "Writes Lenny's Newsletter, top PM resource",
       "platform": "Substack",
       "color": "#FF6719",
-      "title": "\ud83c\udf99\ufe0f How I AI: Claude Duet honest review + Why Reddit built its own AI prototyping tool",
-      "description": "Your weekly listens from How I AI, part of the Lenny&#8217;s Podcast Network",
-      "url": "https://www.lennysnewsletter.com/p/how-i-ai-claude-duet-honest-review",
-      "published": "2026-10-26",
+      "title": "Grok vs. Dot vs. Muse vs. Claude Duet: which one crushes the competition?",
+      "description": "Listen now | &#127897;&#65039; I ranked Grok Bot, Dot, Muse, and Claude Duet across 9 real tasks&#8212;and the scores told me which agent runs my work and which runs my life",
+      "url": "https://www.lennysnewsletter.com/p/grok-vs-dot-vs-muse-vs-claude-duet",
+      "published": "2026-10-28",
+      "relevance": ""
+    },
+    {
+      "person": "Swyx / Shawn Wang",
+      "role": "AI engineer, runs latent.space podcast",
+      "platform": "Blog",
+      "color": "#6B7280",
+      "title": "[AINews] Anthropic ends Coding Interviews: \"Hunger beats tenure\"",
+      "description": "Since coding is solved, why code for the job?",
+      "url": "https://latent.space/p/ainews-anthropic-ends-coding-interviews-hunger-beats-tenure/",
+      "published": "2026-10-28",
       "relevance": ""
     },
     {
@@ -50,10 +50,10 @@
       "role": "Google's AI research division",
       "platform": "Blog",
       "color": "#3B82F6",
-      "title": "Bringing foundational models to the front lines of TB screening",
-      "description": "Generative AI",
-      "url": "https://research.google/blog/bringing-foundational-models-to-the-front-lines-of-tb-screening/",
-      "published": "2026-10-23",
+      "title": "The sleep framework: A new way for LLMs to retain knowledge in continual learning",
+      "description": "Education Innovation",
+      "url": "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/",
+      "published": "2026-10-27",
       "relevance": ""
     },
     {
@@ -124,12 +124,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Gibson Biddle",
-    "role": "Ex-CPO Netflix, product strategy essays",
-    "platform": "Substack",
-    "color": "#FF6719",
-    "url": "https://gibsonbiddle.substack.com",
-    "why": "Consumer-grade product thinking applied to enterprise \u2014 forces different framing.",
-    "date": "2026-10-27"
+    "person": "Clement Delangue",
+    "role": "CEO Hugging Face, open-source AI ecosystem",
+    "platform": "LinkedIn",
+    "color": "#0A66C2",
+    "url": "https://www.linkedin.com/in/clementdelangue",
+    "why": "OSS AI model releases that will hit enterprise before you expect.",
+    "date": "2026-10-28"
   }
 }
