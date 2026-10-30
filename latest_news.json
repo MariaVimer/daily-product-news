@@ -1,15 +1,15 @@
 {
-  "generated": "2026-10-29T17:44:47.585897+00:00",
+  "generated": "2026-10-30T16:57:15.371698+00:00",
   "items": [
     {
       "person": "OpenAI",
       "role": "AI research lab, makers of GPT & o1",
       "platform": "Blog",
       "color": "#10B981",
-      "title": "How we detect frontier model misalignment",
-      "description": "OpenAI uses layered monitoring to detect frontier model misalignment and unauthorized agent behavior so responders can intervene before incidents escalate.",
-      "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment",
-      "published": "2026-10-29",
+      "title": "Community safety report and new protections for teens",
+      "description": "OpenAI is strengthening violence prevention in ChatGPT with expanded safeguards, earlier interventions, and a new commitment to public safety reporting.",
+      "url": "https://openai.com/index/community-safety-report-and-new-protections-for-teens",
+      "published": "2026-10-30",
       "relevance": ""
     },
     {
@@ -20,7 +20,7 @@
       "title": "Sequoia Ascent 2026 summary",
       "description": "Summary of my talk at Sequoia Ascent",
       "url": "https://karpathy.bearblog.dev/sequoia-ascent-2026/",
-      "published": "2026-10-29",
+      "published": "2026-10-30",
       "relevance": ""
     },
     {
@@ -28,9 +28,20 @@
       "role": "AI engineer, runs latent.space podcast",
       "platform": "Blog",
       "color": "#6B7280",
-      "title": "Can Frontier Models See Past a Decoy? Elorian Tests Visual Reasoning",
-      "description": "A new decoy counting benchmark exposes a gap between seeing and reasoning. Elorian\u2019s Glimpse tries to bridge it by thinking with images.",
-      "url": "https://latent.space/p/elorian/",
+      "title": "[AINews] Building AIE CODE: The top Coding Agent Conference",
+      "description": "Mistral\u2019s open-weight release, frontier monitoring, and the day\u2019s AI Twitter and Reddit recaps.",
+      "url": "https://latent.space/p/ainews-building-aie-code-the-top-coding-agent-conference/",
+      "published": "2026-10-30",
+      "relevance": ""
+    },
+    {
+      "person": "Peter Yang",
+      "role": "PM at Roblox, writes Product Compass",
+      "platform": "Substack",
+      "color": "#FF6719",
+      "title": "Product Engineering: 43 Free Skills From the First Idea to Paying Users. MIT.",
+      "description": "For PMs, founders and designers who build with Claude Code, Codex or Cursor, without reading the code.",
+      "url": "https://www.productcompass.pm/p/product-engineering-skills",
       "published": "2026-10-29",
       "relevance": ""
     },
@@ -54,17 +65,6 @@
       "description": "Education Innovation",
       "url": "https://research.google/blog/the-sleep-framework-a-new-way-for-llms-to-retain-knowledge-in-continual-learning/",
       "published": "2026-10-27",
-      "relevance": ""
-    },
-    {
-      "person": "Peter Yang",
-      "role": "PM at Roblox, writes Product Compass",
-      "platform": "Substack",
-      "color": "#FF6719",
-      "title": "Claude Desktop v2.0: You Don't Need VS Code Anymore!",
-      "description": "How to start, the features that matter for PMs, and why I now recommend the Code tab. Plus my collections of skills, MCP servers, free courses, and AGENTS.md snippets.",
-      "url": "https://www.productcompass.pm/p/claude-desktop-code-tab",
-      "published": "2026-10-20",
       "relevance": ""
     },
     {
@@ -124,12 +124,12 @@
     }
   ],
   "daily_pick": {
-    "person": "Ilya Sutskever",
-    "role": "SSI founder, ex-OpenAI chief scientist",
+    "person": "Amanda Askell",
+    "role": "Anthropic researcher, Claude RLHF & character",
     "platform": "Twitter",
-    "color": "#000000",
-    "url": "https://twitter.com/ilyasut",
-    "why": "When he speaks about AI safety, it moves the industry.",
-    "date": "2026-10-29"
+    "color": "#D97706",
+    "url": "https://twitter.com/amandaaskell",
+    "why": "Shapes how Claude reasons \u2014 directly relevant to agent behavior design.",
+    "date": "2026-10-30"
   }
 }
